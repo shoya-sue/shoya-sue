@@ -1,4 +1,11 @@
-## Hi there 👋
+## Hello 👋
+![](http://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=shoya-sue&theme=default)
+
+<!-- 
+![](https://github-readme-stats-shoya-sue-projects.vercel.app/api/top-langs/?layout=compact&count_private=true&username=shoya-sue&include_all_commits=true)
+
+![](https://github-readme-stats-shoya-sue-projects.vercel.app/api?count_private=true&username=shoya-sue)
+-->
 
 <!--
 **shoya-sue/shoya-sue** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
