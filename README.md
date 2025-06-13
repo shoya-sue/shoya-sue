@@ -24,7 +24,7 @@
 <img src="https://skillicons.dev/icons?i=rust" width="100" height="100" alt="Rust" />
 <br><strong>Rust</strong>
 </td>
-<td width="400" align="left">
+<td width="400" align="center">
 
 ## 👋 **Hi, I'm shoya-sue!**
 🚀 **Developer** passionate about coding  
