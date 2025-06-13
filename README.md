@@ -18,15 +18,15 @@
     <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900">
 </div>
 
-<table>
+<table align="center">
 <tr>
 <td width="200" align="center">
 <img src="https://skillicons.dev/icons?i=rust" width="100" height="100" alt="Rust" />
 <br><strong>Rust</strong>
 </td>
-<td width="400" align="center">
+<td width="400" align="left">
 
-## 👋 **Hi, I'm shoya-sue!**
+### 👋 **Hi, I'm shoya-sue!**
 🚀 **Developer** passionate about coding  
 🌍 **Location:** Japan 🇯🇵  
 💼 **Focus:** Building amazing applications  
