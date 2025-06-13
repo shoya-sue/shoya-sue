@@ -1,4 +1,3 @@
-## 🌟 **About Me**
 <div align="center">
     <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900">
 </div>
@@ -15,6 +14,10 @@
     <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=24&duration=3000&pause=1000&color=F7A943&center=true&vCenter=true&width=435&lines=Rust+Developer;TypeScript+Engineer;PHP+Programmer" alt="Technologies" />
 </div>
 
+<div align="center">
+    <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900">
+</div>
+
 <table>
 <tr>
 <td width="200" align="center">
@@ -23,7 +26,7 @@
 </td>
 <td width="400" align="left">
 
-### 👋 **Hi, I'm shoya-sue!**
+## 👋 **Hi, I'm shoya-sue!**
 🚀 **Developer** passionate about coding  
 🌍 **Location:** Japan 🇯🇵  
 💼 **Focus:** Building amazing applications  
@@ -64,10 +67,4 @@
 </td>
 </tr>
 </table>
-
-## 🏆 **GitHub Trophies**
-
-<div align="center">
-    <img src="https://github-profile-trophy.vercel.app/?username=shoya-sue&theme=transparent&no-frame=true&no-bg=false&margin-w=4&column=7" />
-</div>
 
