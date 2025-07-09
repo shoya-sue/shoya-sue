@@ -64,8 +64,7 @@
 <img src="https://skillicons.dev/icons?i=nginx" />
 
 ### 🖥️ **Operating Systems**
-<img src="https://skillicons.dev/icons?i=linux,ubuntu,debian,alpine" /><br/>
-<img src="https://skillicons.dev/icons?i=windows,macos,centos" />
+<img src="https://skillicons.dev/icons?i=linux,ubuntu,debian,windows" />
 
 ### 🔧 **Development Tools**
 <img src="https://skillicons.dev/icons?i=vscode,vim,git,github" /><br/>
@@ -80,18 +79,6 @@
 </td>
 </tr>
 </table>
-
-## 📊 **GitHub Stats**
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=shoya-sue&show_icons=true&theme=radical" alt="GitHub Stats" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=shoya-sue&theme=radical" alt="GitHub Streak" />
-</div>
-
-## 🏆 **GitHub Trophies**
-<div align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=shoya-sue&theme=radical&no-frame=false&no-bg=false&margin-w=4" alt="GitHub Trophies" />
-</div>
 
 ## 🌟 **Featured Projects**
 
