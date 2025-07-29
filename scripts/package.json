@@ -1,0 +1,15 @@
+{
+  "name": "readme-updater",
+  "version": "1.0.0",
+  "description": "Automated README updater with GitHub API stats",
+  "main": "update-readme.js",
+  "scripts": {
+    "update": "node update-readme.js",
+    "test": "node update-readme.js"
+  },
+  "dependencies": {
+    "@octokit/rest": "^20.0.2"
+  },
+  "author": "shoya-sue",
+  "license": "MIT"
+}
