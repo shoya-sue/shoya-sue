@@ -70,48 +70,100 @@ class ReadmeUpdater {
   }
 
   generateActivitySection(stats) {
-    if (!stats) return '## 📊 **Weekly Activity**\n\nNo recent activity data available.\n';
+    if (!stats) {
+      return `
+<div align="center">
+  <h2>📊 Weekly Activity</h2>
+  <p><em>No recent activity data available</em></p>
+</div>
 
-    let activityContent = `## 📊 **Weekly Activity** (${stats.weekStart} - ${stats.weekEnd})\n\n`;
-    
-    // Activity summary
-    activityContent += `### 🚀 **This Week's Highlights**\n`;
-    activityContent += `- 📝 **${stats.commits}** commits pushed\n`;
-    
-    if (stats.issues > 0) {
-      activityContent += `- 🐛 **${stats.issues}** issues worked on\n`;
-    }
-    
-    if (stats.pullRequests > 0) {
-      activityContent += `- 🔄 **${stats.pullRequests}** pull requests\n`;
+`;
     }
 
-    if (stats.languages.length > 0) {
-      activityContent += `- 💻 **Languages used:** ${stats.languages.join(', ')}\n`;
-    }
+    const activityContent = `
+<div align="center">
+  <h2>📊 Weekly Activity</h2>
+  <p><code>${stats.weekStart} - ${stats.weekEnd}</code></p>
+</div>
 
-    // Recent commits (limit to 5)
-    if (stats.commitMessages.length > 0) {
-      activityContent += `\n### 📋 **Recent Commits**\n`;
-      stats.commitMessages.slice(0, 5).forEach(message => {
-        const firstLine = message.split('\n')[0];
-        const shortMessage = firstLine.length > 60 ? firstLine.substring(0, 60) + '...' : firstLine;
-        activityContent += `- ${shortMessage}\n`;
-      });
-    }
+<table align="center" width="100%">
+<tr>
+<td width="50%" align="center">
 
-    // Repository stats
-    activityContent += `\n### 📈 **Repository Stats**\n`;
-    activityContent += `- ⭐ **${stats.totalStars}** stars\n`;
-    activityContent += `- 🍴 **${stats.totalForks}** forks\n`;
-    
-    activityContent += `\n*Last updated: ${new Date().toLocaleDateString('ja-JP', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    })}*\n\n`;
+### 🚀 This Week's Highlights
+
+<div align="center">
+<table>
+<tr>
+<td align="center">
+<img src="https://img.shields.io/badge/Commits-${stats.commits}-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
+</td>
+</tr>
+${stats.issues > 0 ? `<tr><td align="center"><img src="https://img.shields.io/badge/Issues-${stats.issues}-orange?style=for-the-badge&logo=github&logoColor=white" alt="Issues"/></td></tr>` : ''}
+${stats.pullRequests > 0 ? `<tr><td align="center"><img src="https://img.shields.io/badge/Pull%20Requests-${stats.pullRequests}-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/></td></tr>` : ''}
+</table>
+</div>
+
+${stats.languages.length > 0 ? `
+### 💻 Languages Used
+<div align="center">
+<table>
+<tr>
+${stats.languages.slice(0, 3).map(lang => `<td align="center"><img src="https://img.shields.io/badge/${lang}-★-purple?style=for-the-badge&logo=${lang.toLowerCase()}&logoColor=white" alt="${lang}"/></td>`).join('')}
+</tr>
+</table>
+</div>
+` : ''}
+
+</td>
+<td width="50%" align="center">
+
+### 📋 Recent Activity
+
+<div align="left">
+${stats.commitMessages.length > 0 ? 
+  stats.commitMessages.slice(0, 4).map((message, index) => {
+    const firstLine = message.split('\n')[0];
+    const shortMessage = firstLine.length > 45 ? firstLine.substring(0, 45) + '...' : firstLine;
+    const emoji = ['🎯', '🔧', '✨', '🐛'][index] || '📝';
+    return `<p>${emoji} <code>${shortMessage}</code></p>`;
+  }).join('') 
+  : '<p><em>No recent commits</em></p>'
+}
+</div>
+
+### 📈 Repository Stats
+
+<div align="center">
+<table>
+<tr>
+<td align="center">
+<img src="https://img.shields.io/badge/⭐%20Stars-${stats.totalStars}-yellow?style=for-the-badge" alt="Stars"/>
+</td>
+<td align="center">
+<img src="https://img.shields.io/badge/🍴%20Forks-${stats.totalForks}-blue?style=for-the-badge" alt="Forks"/>
+</td>
+</tr>
+</table>
+</div>
+
+</td>
+</tr>
+</table>
+
+<div align="center">
+  <sub>🤖 <em>Last updated: ${new Date().toLocaleDateString('ja-JP', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  })}</em></sub>
+</div>
+
+---
+
+`;
 
     return activityContent;
   }
