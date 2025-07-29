@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd scripts
-          npm ci --production
+          npm ci --omit=dev
           
       - name: Update README
         env:
