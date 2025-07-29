@@ -27,8 +27,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd scripts
-          npm init -y
-          npm install @octokit/rest
+          npm ci --production
           
       - name: Update README
         env:

@@ -44,11 +44,7 @@ hobbies:
 ### 🔥 GitHub Stats
 
 <div align="center">
-  <img height="160em" src="https://github-stats-alpha.vercel.app/api?username=shoya-sue&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117"/>
-</div>
-
-<div align="center">
-  <img height="160em" src="https://streak-stats.demolab.com/?user=shoya-sue&theme=tokyonight&hide_border=true&background=0d1117" alt="GitHub Streak"/>
+  <img height="180em" src="https://github-stats-alpha.vercel.app/api?username=shoya-sue&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117"/>
 </div>
 
 <div align="center">
