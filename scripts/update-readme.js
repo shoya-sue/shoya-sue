@@ -17,12 +17,12 @@ class ReadmeUpdater {
     const since = oneWeekAgo.toISOString();
 
     try {
-      // Get commits from the last week
+      // Get commits from the last week (increased per_page to get more commits)
       const { data: commits } = await this.octokit.rest.repos.listCommits({
         owner: this.owner,
         repo: this.repo,
         since: since,
-        author: this.owner
+        per_page: 100
       });
 
       // Get repository stats
@@ -44,6 +44,13 @@ class ReadmeUpdater {
         since: since,
         state: 'all'
       });
+
+      // Debug logging
+      console.log(`Found ${commits.length} commits since ${since}`);
+      console.log(`Commits:`, commits.map(c => ({
+        message: c.commit.message.split('\n')[0],
+        date: c.commit.author.date
+      })));
 
       return {
         commits: commits.length,
@@ -87,8 +94,9 @@ class ReadmeUpdater {
     if (stats.commitMessages.length > 0) {
       activityContent += `\n### 📋 **Recent Commits**\n`;
       stats.commitMessages.slice(0, 5).forEach(message => {
-        const shortMessage = message.split('\n')[0].substring(0, 60);
-        activityContent += `- ${shortMessage}${message.length > 60 ? '...' : ''}\n`;
+        const firstLine = message.split('\n')[0];
+        const shortMessage = firstLine.length > 60 ? firstLine.substring(0, 60) + '...' : firstLine;
+        activityContent += `- ${shortMessage}\n`;
       });
     }
 
