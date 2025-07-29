@@ -177,9 +177,9 @@ ${stats.commitMessages.length > 0 ?
       // Find the Weekly Activity section and replace it, or Featured Projects if it doesn't exist
       const activitySection = this.generateActivitySection(stats);
       
-      // Try to replace existing Weekly Activity section first
+      // Try to replace existing Weekly Activity section (handle both h2 and div formats)
       let updatedContent = readmeContent.replace(
-        /## 📊 \*\*Weekly Activity\*\* \([^)]+\)\n\n[\s\S]*?(?=\n## |$)/,
+        /<div align="center">\s*<h2>📊 Weekly Activity<\/h2>[\s\S]*?(?=<div align="center">\s*<h2>|## |$)/,
         activitySection
       );
       
