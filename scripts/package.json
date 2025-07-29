@@ -5,10 +5,22 @@
   "main": "update-readme.js",
   "scripts": {
     "update": "node update-readme.js",
-    "test": "node update-readme.js"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@octokit/rest": "^20.0.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "update-readme.js"
+    ]
   },
   "author": "shoya-sue",
   "license": "MIT"
