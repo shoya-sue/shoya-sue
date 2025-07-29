@@ -83,17 +83,21 @@
 ## 📊 **Weekly Activity** (2025/7/22 - 2025/7/29)
 
 ### 🚀 **This Week's Highlights**
-- 📝 **1** commits pushed
+- 📝 **5** commits pushed
 - 💻 **Languages used:** HTML, JavaScript
 
 ### 📋 **Recent Commits**
-- Add automated weekly README activity updater...
+- Fix README pattern matching for existing Weekly Activity sec...
+- 修正：.gitignoreと初期package-lock.jsonを追加する。
+- Fix README updater: remove author filter, improve commit cou...
+- 📊 Update weekly activity stats
+- Add automated weekly README activity updater
 
 ### 📈 **Repository Stats**
 - ⭐ **0** stars
 - 🍴 **0** forks
 
-*Last updated: 2025年7月29日 05:19*
+*Last updated: 2025年7月29日 05:49*
 
 
 ## 📫 **Connect with Me**
