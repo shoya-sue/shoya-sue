@@ -122,15 +122,33 @@ class ReadmeUpdater {
       const readmePath = path.join(__dirname, '..', 'README.md');
       const readmeContent = fs.readFileSync(readmePath, 'utf8');
       
-      // Find the Featured Projects section and replace it
+      // Find the Weekly Activity section and replace it, or Featured Projects if it doesn't exist
       const activitySection = this.generateActivitySection(stats);
-      const updatedContent = readmeContent.replace(
-        /## 🌟 \*\*Featured Projects\*\*\n\nComing soon\.\.\. 🚀\n/,
+      
+      // Try to replace existing Weekly Activity section first
+      let updatedContent = readmeContent.replace(
+        /## 📊 \*\*Weekly Activity\*\* \([^)]+\)\n\n[\s\S]*?(?=\n## |$)/,
         activitySection
       );
+      
+      // If Weekly Activity section doesn't exist, replace Featured Projects
+      if (updatedContent === readmeContent) {
+        updatedContent = readmeContent.replace(
+          /## 🌟 \*\*Featured Projects\*\*\n\nComing soon\.\.\. 🚀\n/,
+          activitySection
+        );
+      }
 
+      // Check if content actually changed
+      if (updatedContent === readmeContent) {
+        console.log('No changes made to README - pattern may not match');
+        console.log('Looking for Weekly Activity section...');
+        return false;
+      }
+      
       fs.writeFileSync(readmePath, updatedContent);
       console.log('README updated successfully!');
+      console.log(`Updated ${updatedContent.length - readmeContent.length} characters`);
       
       return true;
     } catch (error) {
