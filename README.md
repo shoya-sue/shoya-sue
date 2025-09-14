@@ -98,9 +98,10 @@ hobbies:
 
 
 
+
 <div align="center">
   <h2>📊 Weekly Activity</h2>
-  <p><code>2025/8/31 - 2025/9/7</code></p>
+  <p><code>2025/9/7 - 2025/9/14</code></p>
 </div>
 
 <table align="center" width="100%">
@@ -108,6 +109,65 @@ hobbies:
 <td width="50%" align="center">
 
 ### 🚀 This Week's Highlights
+
+<div align="center">
+<table>
+<tr>
+<td align="center">
+<img src="https://img.shields.io/badge/Commits-1-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
+</td>
+</tr>
+
+
+</table>
+</div>
+
+
+### 💻 Languages Used
+<div align="center">
+<table>
+<tr>
+<td align="center"><img src="https://img.shields.io/badge/JavaScript-★-purple?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript"/></td><td align="center"><img src="https://img.shields.io/badge/HTML-★-purple?style=for-the-badge&logo=html&logoColor=white" alt="HTML"/></td>
+</tr>
+</table>
+</div>
+
+
+</td>
+<td width="50%" align="center">
+
+### 📋 Recent Activity
+
+<div align="left">
+<p>🎯 <code>📊 Update weekly activity stats</code></p>
+</div>
+
+### 📈 Repository Stats
+
+<div align="center">
+<table>
+<tr>
+<td align="center">
+<img src="https://img.shields.io/badge/⭐%20Stars-0-yellow?style=for-the-badge" alt="Stars"/>
+</td>
+<td align="center">
+<img src="https://img.shields.io/badge/🍴%20Forks-0-blue?style=for-the-badge" alt="Forks"/>
+</td>
+</tr>
+</table>
+</div>
+
+</td>
+</tr>
+</table>
+
+<div align="center">
+  <sub>🤖 <em>Last updated: 2025年9月14日 00:17</em></sub>
+</div>
+
+---
+
+## 🚀 This Week's Highlights
 
 <div align="center">
 <table>
