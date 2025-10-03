@@ -124,13 +124,17 @@ describe('ReadmeUpdater', () => {
 
   describe('updateReadme', () => {
     it('should update README successfully', async () => {
-      const mockReadmeContent = `# Profile
+      const mockReadmeContent = `# GitHub Profile
 
-## 📊 Weekly Activity (2025/7/15 - 2025/7/22)
+## 🛠️ Tech Arsenal
 
-Old content here
+Some tech content here
 
-## Other Section`;
+---
+
+## 🤝 Connect with Me
+
+Contact info`;
 
       const mockStats = {
         commits: 3,
@@ -156,8 +160,10 @@ Old content here
       expect(fs.writeFileSync).toHaveBeenCalled();
       
       const writtenContent = fs.writeFileSync.mock.calls[0][1];
+      expect(writtenContent).toContain('📊 Weekly Activity');
       expect(writtenContent).toContain('2025/7/22 - 2025/7/29');
       expect(writtenContent).toContain('Commits-3');
+      expect(writtenContent).toContain('🤝 Connect with Me');
     });
 
     it('should handle file read errors', async () => {

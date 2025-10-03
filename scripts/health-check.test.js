@@ -136,7 +136,7 @@ describe('Health Check', () => {
       expect(urls.some(url => url.includes('capsule-render.vercel.app'))).toBe(true);
       expect(urls.some(url => url.includes('readme-typing-svg.herokuapp.com'))).toBe(true);
       expect(urls.some(url => url.includes('github-stats-alpha.vercel.app'))).toBe(true);
-      expect(urls.some(url => url.includes('streak-stats.demolab.com'))).toBe(true);
+      // streak-stats.demolab.com was removed from the README
       expect(urls.some(url => url.includes('github-readme-activity-graph.vercel.app'))).toBe(true);
       expect(urls.some(url => url.includes('github-trophies.vercel.app'))).toBe(true);
       expect(urls.some(url => url.includes('komarev.com/ghpvc'))).toBe(true);

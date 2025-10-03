@@ -174,33 +174,40 @@ ${stats.commitMessages.length > 0 ?
       const readmePath = path.join(__dirname, '..', 'README.md');
       const readmeContent = fs.readFileSync(readmePath, 'utf8');
       
-      // Find the Weekly Activity section and replace it, or Featured Projects if it doesn't exist
+      // Find the Tech Arsenal section marker
+      const techArsenalPattern = /## 🛠️ Tech Arsenal[\s\S]*?(?=---\n)/;
+      const techArsenalMatch = readmeContent.match(techArsenalPattern);
+      
+      if (!techArsenalMatch) {
+        console.error('Tech Arsenal section not found in README');
+        return false;
+      }
+      
+      // Get the content before and including Tech Arsenal
+      const techArsenalEndIndex = techArsenalMatch.index + techArsenalMatch[0].length;
+      const beforeDynamic = readmeContent.substring(0, techArsenalEndIndex);
+      
+      // Generate new activity section
       const activitySection = this.generateActivitySection(stats);
       
-      // Try to replace existing Weekly Activity section (handle both h2 and div formats)
-      let updatedContent = readmeContent.replace(
-        /<div align="center">\s*<h2>📊 Weekly Activity<\/h2>[\s\S]*?(?=<div align="center">\s*<h2>|## |$)/,
-        activitySection
-      );
+      // Find the footer section (Connect with Me and below)
+      const footerPattern = /## 🤝 Connect with Me[\s\S]*$/;
+      const footerMatch = readmeContent.match(footerPattern);
+      const footerContent = footerMatch ? footerMatch[0] : '';
       
-      // If Weekly Activity section doesn't exist, replace Featured Projects
+      // Construct the updated README
+      // Keep everything up to Tech Arsenal, add separator, add weekly activity, add footer
+      const updatedContent = beforeDynamic + '---\n\n' + activitySection + footerContent;
+      
+      // Check if content actually changed meaningfully
       if (updatedContent === readmeContent) {
-        updatedContent = readmeContent.replace(
-          /## 🌟 \*\*Featured Projects\*\*\n\nComing soon\.\.\. 🚀\n/,
-          activitySection
-        );
-      }
-
-      // Check if content actually changed
-      if (updatedContent === readmeContent) {
-        console.log('No changes made to README - pattern may not match');
-        console.log('Looking for Weekly Activity section...');
+        console.log('No changes made to README');
         return false;
       }
       
       fs.writeFileSync(readmePath, updatedContent);
       console.log('README updated successfully!');
-      console.log(`Updated ${updatedContent.length - readmeContent.length} characters`);
+      console.log(`New content length: ${updatedContent.length} characters`);
       
       return true;
     } catch (error) {
