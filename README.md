@@ -92,9 +92,10 @@ hobbies:
 
 ---
 
+
 <div align="center">
   <h2>📊 Weekly Activity</h2>
-  <p><code>2025/7/29 - 2025/8/3</code></p>
+  <p><code>2025/9/28 - 2025/10/5</code></p>
 </div>
 
 <table align="center" width="100%">
@@ -107,11 +108,14 @@ hobbies:
 <table>
 <tr>
 <td align="center">
-<img src="https://img.shields.io/badge/Commits-14-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
+<img src="https://img.shields.io/badge/Commits-3-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
 </td>
 </tr>
+
+
 </table>
 </div>
+
 
 ### 💻 Languages Used
 <div align="center">
@@ -122,16 +126,14 @@ hobbies:
 </table>
 </div>
 
+
 </td>
 <td width="50%" align="center">
 
 ### 📋 Recent Activity
 
 <div align="left">
-<p>🎯 <code>Fix regex pattern to match new HTML-based Wee...</code></p>
-<p>🔧 <code>Fix npm ci error by regenerating package-lock...</code></p>
-<p>✨ <code>Add health check system and remove unstable S...</code></p>
-<p>🐛 <code>Add unit tests for README updater with Jest f...</code></p>
+<p>🎯 <code>更新：アップロードアーティファクトアクションをv4に更新</code></p><p>🔧 <code>更新：READMEの週間活動更新ロジックをリファクタリング</code></p><p>✨ <code>📊 Update weekly activity stats</code></p>
 </div>
 
 ### 📈 Repository Stats
@@ -154,7 +156,7 @@ hobbies:
 </table>
 
 <div align="center">
-  <sub>🤖 <em>Last updated: 2025年8月3日 00:20</em></sub>
+  <sub>🤖 <em>Last updated: 2025年10月5日 00:18</em></sub>
 </div>
 
 ---
