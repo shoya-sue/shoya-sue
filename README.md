@@ -95,7 +95,7 @@ hobbies:
 
 <div align="center">
   <h2>📊 Weekly Activity</h2>
-  <p><code>2025/10/26 - 2025/11/2</code></p>
+  <p><code>2025/11/2 - 2025/11/9</code></p>
 </div>
 
 <table align="center" width="100%">
@@ -156,7 +156,7 @@ hobbies:
 </table>
 
 <div align="center">
-  <sub>🤖 <em>Last updated: 2025年11月2日 00:18</em></sub>
+  <sub>🤖 <em>Last updated: 2025年11月9日 00:18</em></sub>
 </div>
 
 ---
