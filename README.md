@@ -95,7 +95,7 @@ hobbies:
 
 <div align="center">
   <h2>📊 Weekly Activity</h2>
-  <p><code>2025/11/16 - 2025/11/23</code></p>
+  <p><code>2025/11/23 - 2025/11/30</code></p>
 </div>
 
 <table align="center" width="100%">
@@ -108,7 +108,7 @@ hobbies:
 <table>
 <tr>
 <td align="center">
-<img src="https://img.shields.io/badge/Commits-0-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
+<img src="https://img.shields.io/badge/Commits-1-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
 </td>
 </tr>
 
@@ -133,7 +133,7 @@ hobbies:
 ### 📋 Recent Activity
 
 <div align="left">
-<p><em>No recent commits</em></p>
+<p>🎯 <code>📊 Update weekly activity stats</code></p>
 </div>
 
 ### 📈 Repository Stats
@@ -156,7 +156,7 @@ hobbies:
 </table>
 
 <div align="center">
-  <sub>🤖 <em>Last updated: 2025年11月23日 00:20</em></sub>
+  <sub>🤖 <em>Last updated: 2025年11月30日 00:19</em></sub>
 </div>
 
 ---
