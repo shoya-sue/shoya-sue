@@ -107,7 +107,7 @@ hobbies:
 
 <div align="center">
   <h2>📊 Weekly Activity</h2>
-  <p><code>2025/11/23 - 2025/11/30</code></p>
+  <p><code>2025/11/30 - 2025/12/7</code></p>
 </div>
 
 <table align="center" width="100%">
@@ -145,7 +145,7 @@ hobbies:
 ### 📋 Recent Activity
 
 <div align="left">
-<p>🎯 <code>📊 Update weekly activity stats</code></p>
+<p>🎯 <code>更新: GitHubの統計情報とバッジの変更を反映してREADMEを更新</code></p>
 </div>
 
 ### 📈 Repository Stats
@@ -168,7 +168,7 @@ hobbies:
 </table>
 
 <div align="center">
-  <sub>🤖 <em>Last updated: 2025年11月30日 00:19</em></sub>
+  <sub>🤖 <em>Last updated: 2025年12月7日 00:19</em></sub>
 </div>
 
 ---
