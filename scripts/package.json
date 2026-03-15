@@ -20,7 +20,8 @@
     "testEnvironment": "node",
     "coverageDirectory": "coverage",
     "collectCoverageFrom": [
-      "update-readme.js"
+      "update-readme.js",
+      "health-check.js"
     ]
   },
   "author": "shoya-sue",

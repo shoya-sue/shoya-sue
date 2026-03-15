@@ -70,6 +70,8 @@ hobbies:
 
 ## 🛠️ Tech Arsenal
 
+<!-- TECH_ARSENAL_START -->
+
 <div align="center">
 
 ### 💻 Programming Languages
@@ -77,99 +79,25 @@ hobbies:
 <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"/>
 <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP"/>
-<!-- <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/> -->
 
-### 🌐 Frontend Development
-<img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React"/>
-<img src="https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D" alt="Vue.js"/>
-<img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js"/>
-<img src="https://img.shields.io/badge/Nuxt.js-00C58E?style=for-the-badge&logo=nuxtdotjs&logoColor=white" alt="Nuxt.js"/>
-<!-- <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind"/> -->
-<img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap"/>
-
-### ⚙️ Backend & Infrastructure
-<img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js"/>
-<img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=express&logoColor=white" alt="Express"/>
-<img src="https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel"/>
-<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
-<!-- <img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white" alt="AWS"/> -->
-
-### 🗄️ Databases & Tools
-<img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL"/>
-<img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL"/>
-<img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git"/>
-<img src="https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" alt="VS Code"/>
+### 🌐 Frontend
+<img src="https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML"/>
+<img src="https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS"/>
 
 </div>
+
+<!-- TECH_ARSENAL_END -->
 
 ---
 
+<!-- WEEKLY_ACTIVITY_START -->
 
 <div align="center">
   <h2>📊 Weekly Activity</h2>
-  <p><code>2026/3/8 - 2026/3/15</code></p>
+  <p><em>Waiting for first automated update...</em></p>
 </div>
 
-<table align="center" width="100%">
-<tr>
-<td width="50%" align="center">
-
-### 🚀 This Week's Highlights
-
-<div align="center">
-<table>
-<tr>
-<td align="center">
-<img src="https://img.shields.io/badge/Commits-0-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
-</td>
-</tr>
-
-
-</table>
-</div>
-
-
-### 💻 Languages Used
-<div align="center">
-<table>
-<tr>
-<td align="center"><img src="https://img.shields.io/badge/JavaScript-★-purple?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript"/></td><td align="center"><img src="https://img.shields.io/badge/HTML-★-purple?style=for-the-badge&logo=html&logoColor=white" alt="HTML"/></td>
-</tr>
-</table>
-</div>
-
-
-</td>
-<td width="50%" align="center">
-
-### 📋 Recent Activity
-
-<div align="left">
-<p><em>No recent commits</em></p>
-</div>
-
-### 📈 Repository Stats
-
-<div align="center">
-<table>
-<tr>
-<td align="center">
-<img src="https://img.shields.io/badge/⭐%20Stars-0-yellow?style=for-the-badge" alt="Stars"/>
-</td>
-<td align="center">
-<img src="https://img.shields.io/badge/🍴%20Forks-0-blue?style=for-the-badge" alt="Forks"/>
-</td>
-</tr>
-</table>
-</div>
-
-</td>
-</tr>
-</table>
-
-<div align="center">
-  <sub>🤖 <em>Last updated: 2026年3月15日 00:26</em></sub>
-</div>
+<!-- WEEKLY_ACTIVITY_END -->
 
 ---
 
