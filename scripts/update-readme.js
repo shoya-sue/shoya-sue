@@ -184,6 +184,70 @@ class GitHubDataCollector {
     }
     return allEvents;
   }
+
+  /**
+   * Fetch contribution stats via GraphQL contributionsCollection.
+   * This includes private contributions and is more reliable than Events API.
+   */
+  async fetchContributionStats() {
+    const to = new Date();
+    const from = new Date();
+    from.setDate(from.getDate() - 7);
+
+    try {
+      const query = `
+        query($owner: String!, $from: DateTime!, $to: DateTime!) {
+          user(login: $owner) {
+            contributionsCollection(from: $from, to: $to) {
+              totalCommitContributions
+              totalPullRequestContributions
+              totalIssueContributions
+              totalPullRequestReviewContributions
+              commitContributionsByRepository(maxRepositories: 10) {
+                repository { nameWithOwner }
+                contributions { totalCount }
+              }
+            }
+          }
+        }
+      `;
+
+      const result = await this.octokit.graphql(query, {
+        owner: this.owner,
+        from: from.toISOString(),
+        to: to.toISOString(),
+      });
+
+      const user = result?.user;
+      if (!user) {
+        console.warn(`[GraphQL] User "${this.owner}" not found`);
+        return null;
+      }
+
+      const collection = user.contributionsCollection;
+      const stats = {
+        commits: collection.totalCommitContributions,
+        pullRequests: collection.totalPullRequestContributions,
+        issues: collection.totalIssueContributions,
+        reviews: collection.totalPullRequestReviewContributions,
+        activeRepos: collection.commitContributionsByRepository.map(r => {
+          const full = r.repository.nameWithOwner;
+          const parts = full.split('/');
+          return {
+            name: parts.length > 1 ? parts[1] : full,
+            fullName: full,
+            commits: r.contributions.totalCount,
+          };
+        }),
+      };
+
+      console.log(`[GraphQL] Contributions: ${stats.commits} commits, ${stats.pullRequests} PRs, ${stats.issues} issues, ${stats.reviews} reviews`);
+      return stats;
+    } catch (error) {
+      console.error('Error fetching contribution stats:', error.message);
+      return null;
+    }
+  }
 }
 
 // ============================================================
@@ -192,18 +256,22 @@ class GitHubDataCollector {
 class StatsAggregator {
   /**
    * Filter events to the last 7 days and compute weekly stats.
+   * When contributionStats (from GraphQL) is provided, use it as the
+   * primary data source for counts; Events API supplements with commit
+   * messages and other activity details.
    */
-  static aggregateWeeklyStats(events) {
+  static aggregateWeeklyStats(events, contributionStats = null) {
     const oneWeekAgo = new Date();
     oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
     const weeklyEvents = events.filter(e => new Date(e.created_at) >= oneWeekAgo);
 
-    let commits = 0;
+    // Extract commit messages from Events API (best-effort)
+    let eventsCommits = 0;
     const commitMessages = [];
     for (const event of weeklyEvents) {
       if (event.type === 'PushEvent') {
-        commits += event.payload.size || 0;
+        eventsCommits += event.payload.size || 0;
         for (const c of (event.payload.commits || [])) {
           commitMessages.push({
             message: c.message,
@@ -213,18 +281,66 @@ class StatsAggregator {
       }
     }
 
-    const pullRequests = weeklyEvents.filter(e => e.type === 'PullRequestEvent').length;
-    const issues = weeklyEvents.filter(e => e.type === 'IssuesEvent').length;
-    const activeRepos = [...new Set(
+    const eventsPRs = weeklyEvents.filter(e => e.type === 'PullRequestEvent').length;
+    const eventsIssues = weeklyEvents.filter(e => e.type === 'IssuesEvent').length;
+    const eventsActiveRepos = [...new Set(
       weeklyEvents.map(e => e.repo.name.replace(`${e.actor.login}/`, ''))
     )];
+
+    // Summarize other event types for richer activity display
+    const otherActivity = [];
+    const eventTypeCounts = {};
+    for (const event of weeklyEvents) {
+      if (!['PushEvent', 'PullRequestEvent', 'IssuesEvent'].includes(event.type)) {
+        eventTypeCounts[event.type] = (eventTypeCounts[event.type] || 0) + 1;
+      }
+    }
+    const EVENT_TYPE_LABELS = {
+      'CreateEvent': '🌱 Branch/Repo created',
+      'DeleteEvent': '🗑️ Branch/Repo deleted',
+      'WatchEvent': '⭐ Starred a repo',
+      'ForkEvent': '🍴 Forked a repo',
+      'IssueCommentEvent': '💬 Issue comments',
+      'PullRequestReviewEvent': '👀 PR reviews',
+      'PullRequestReviewCommentEvent': '💬 PR review comments',
+      'ReleaseEvent': '🏷️ Releases',
+      'PublicEvent': '📢 Made repo public',
+      'MemberEvent': '👥 Collaborator added',
+      'GollumEvent': '📝 Wiki updates',
+      'CommitCommentEvent': '💬 Commit comments',
+    };
+    for (const [type, count] of Object.entries(eventTypeCounts)) {
+      const label = EVENT_TYPE_LABELS[type] || type.replace('Event', '');
+      otherActivity.push({ type, label, count });
+    }
+    otherActivity.sort((a, b) => b.count - a.count);
+
+    // Use GraphQL contributionStats as primary source when available
+    let commits, pullRequests, issues, reviews, activeRepos;
+    if (contributionStats) {
+      commits = contributionStats.commits;
+      pullRequests = contributionStats.pullRequests;
+      issues = contributionStats.issues;
+      reviews = contributionStats.reviews || 0;
+      // Merge active repos: GraphQL provides repos with commits, Events API provides repos with any activity
+      const graphqlRepoNames = contributionStats.activeRepos.map(r => r.name);
+      activeRepos = [...new Set([...graphqlRepoNames, ...eventsActiveRepos])];
+    } else {
+      commits = eventsCommits;
+      pullRequests = eventsPRs;
+      issues = eventsIssues;
+      reviews = 0;
+      activeRepos = eventsActiveRepos;
+    }
 
     return {
       commits,
       commitMessages: commitMessages.slice(0, 8),
       pullRequests,
       issues,
+      reviews,
       activeRepos,
+      otherActivity,
       weekStart: oneWeekAgo.toLocaleDateString('ja-JP'),
       weekEnd: new Date().toLocaleDateString('ja-JP'),
     };
@@ -379,6 +495,11 @@ class ReadmeRenderer {
       lines.push(`<img src="https://img.shields.io/badge/Issues-${stats.issues}-orange?style=for-the-badge&logo=github&logoColor=white" alt="Issues"/>`);
       lines.push('</td></tr>');
     }
+    if (stats.reviews > 0) {
+      lines.push('<tr><td align="center">');
+      lines.push(`<img src="https://img.shields.io/badge/Reviews-${stats.reviews}-purple?style=for-the-badge&logo=github&logoColor=white" alt="Reviews"/>`);
+      lines.push('</td></tr>');
+    }
     lines.push('</table>');
     lines.push('</div>');
     lines.push('');
@@ -431,8 +552,12 @@ class ReadmeRenderer {
         const emoji = emojis[index] || '📝';
         lines.push(`<p>${emoji} <code>[${c.repo}]</code> ${shortMessage}</p>`);
       });
+    } else if (stats.otherActivity && stats.otherActivity.length > 0) {
+      stats.otherActivity.slice(0, 5).forEach(a => {
+        lines.push(`<p>${a.label}: <strong>${a.count}</strong></p>`);
+      });
     } else {
-      lines.push('<p><em>No recent commits</em></p>');
+      lines.push('<p><em>No recent activity</em></p>');
     }
     lines.push('</div>');
     lines.push('');
@@ -645,19 +770,20 @@ class ReadmeUpdater {
       console.log(`Starting README update for user: ${this.owner}`);
       if (this.dryRun) console.log('🔍 DRY RUN MODE – no files will be written');
 
-      // 1. Collect data: GraphQL for repos/languages, REST for events (parallel)
-      const [{ repos, languageBytes }, events] = await Promise.all([
+      // 1. Collect data: GraphQL for repos/languages, REST for events, GraphQL for contributions (parallel)
+      const [{ repos, languageBytes }, events, contributionStats] = await Promise.all([
         this.collector.fetchRepoDataGraphQL(),
         this.collector.fetchUserEvents(),
+        this.collector.fetchContributionStats(),
       ]);
 
       // 2. Process data
-      const weeklyStats = StatsAggregator.aggregateWeeklyStats(events);
+      const weeklyStats = StatsAggregator.aggregateWeeklyStats(events, contributionStats);
       const languages = StatsAggregator.calculateLanguageRatio(languageBytes);
       const repoStats = StatsAggregator.aggregateRepoStats(repos);
 
       console.log('\n--- Aggregated Data ---');
-      console.log(`Commits: ${weeklyStats.commits}, PRs: ${weeklyStats.pullRequests}, Issues: ${weeklyStats.issues}`);
+      console.log(`Commits: ${weeklyStats.commits}, PRs: ${weeklyStats.pullRequests}, Issues: ${weeklyStats.issues}, Reviews: ${weeklyStats.reviews}`);
       console.log(`Active repos: ${weeklyStats.activeRepos.join(', ') || '(none)'}`);
       console.log(`Languages: ${languages.map(l => `${l.name}(${l.percent}%)`).join(', ') || '(none)'}`);
       console.log(`Stars: ${repoStats.totalStars}, Forks: ${repoStats.totalForks}, Repos: ${repoStats.totalRepos}`);

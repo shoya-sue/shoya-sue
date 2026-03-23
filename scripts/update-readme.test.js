@@ -100,6 +100,53 @@ describe('StatsAggregator', () => {
       const stats = StatsAggregator.aggregateWeeklyStats(events);
       expect(stats.commitMessages).toHaveLength(8);
     });
+
+    it('should use contributionStats as primary source when provided', () => {
+      const now = new Date();
+      const events = [
+        { type: 'WatchEvent', created_at: now.toISOString(), repo: { name: 'user/starred-repo' }, actor: { login: 'user' }, payload: {} },
+      ];
+      const contributionStats = {
+        commits: 15,
+        pullRequests: 3,
+        issues: 2,
+        reviews: 5,
+        activeRepos: [
+          { name: 'project-a', fullName: 'user/project-a', commits: 10 },
+          { name: 'project-b', fullName: 'user/project-b', commits: 5 },
+        ],
+      };
+
+      const stats = StatsAggregator.aggregateWeeklyStats(events, contributionStats);
+      expect(stats.commits).toBe(15);
+      expect(stats.pullRequests).toBe(3);
+      expect(stats.issues).toBe(2);
+      expect(stats.reviews).toBe(5);
+      // Both sources use short name format
+      expect(stats.activeRepos).toContain('project-a');
+      expect(stats.activeRepos).toContain('starred-repo');
+    });
+
+    it('should collect otherActivity from non-commit events', () => {
+      const now = new Date();
+      const events = [
+        { type: 'WatchEvent', created_at: now.toISOString(), repo: { name: 'user/repo-a' }, actor: { login: 'user' }, payload: {} },
+        { type: 'WatchEvent', created_at: now.toISOString(), repo: { name: 'user/repo-b' }, actor: { login: 'user' }, payload: {} },
+        { type: 'CreateEvent', created_at: now.toISOString(), repo: { name: 'user/repo-c' }, actor: { login: 'user' }, payload: {} },
+      ];
+
+      const stats = StatsAggregator.aggregateWeeklyStats(events);
+      expect(stats.otherActivity).toHaveLength(2);
+      const watchActivity = stats.otherActivity.find(a => a.type === 'WatchEvent');
+      expect(watchActivity.count).toBe(2);
+      expect(watchActivity.label).toContain('Starred');
+    });
+
+    it('should return reviews=0 when no contributionStats provided', () => {
+      const stats = StatsAggregator.aggregateWeeklyStats([]);
+      expect(stats.reviews).toBe(0);
+      expect(stats.otherActivity).toEqual([]);
+    });
   });
 
   describe('calculateLanguageRatio', () => {
@@ -247,7 +294,9 @@ describe('ReadmeRenderer', () => {
       ],
       pullRequests: 3,
       issues: 1,
+      reviews: 0,
       activeRepos: ['project-a', 'project-b'],
+      otherActivity: [],
       weekStart: '2026/3/8',
       weekEnd: '2026/3/15',
       ...overrides,
@@ -303,6 +352,50 @@ describe('ReadmeRenderer', () => {
         { totalStars: 0, totalForks: 0, totalRepos: 1 }
       );
       expect(section).toContain('...');
+    });
+
+    it('should show reviews badge when count > 0', () => {
+      const section = ReadmeRenderer.generateActivitySection(
+        makeStats({ reviews: 7 }),
+        [],
+        { totalStars: 0, totalForks: 0, totalRepos: 1 }
+      );
+      expect(section).toContain('Reviews-7');
+    });
+
+    it('should hide reviews badge when count is zero', () => {
+      const section = ReadmeRenderer.generateActivitySection(
+        makeStats({ reviews: 0 }),
+        [],
+        { totalStars: 0, totalForks: 0, totalRepos: 1 }
+      );
+      expect(section).not.toContain('Reviews-');
+    });
+
+    it('should show other activity when no commit messages', () => {
+      const section = ReadmeRenderer.generateActivitySection(
+        makeStats({
+          commitMessages: [],
+          otherActivity: [
+            { type: 'WatchEvent', label: '⭐ Starred a repo', count: 3 },
+            { type: 'CreateEvent', label: '🌱 Branch/Repo created', count: 1 },
+          ],
+        }),
+        [],
+        { totalStars: 0, totalForks: 0, totalRepos: 1 }
+      );
+      expect(section).toContain('Starred a repo');
+      expect(section).toContain('<strong>3</strong>');
+      expect(section).not.toContain('No recent activity');
+    });
+
+    it('should show no activity message when everything is empty', () => {
+      const section = ReadmeRenderer.generateActivitySection(
+        makeStats({ commitMessages: [], otherActivity: [] }),
+        [],
+        { totalStars: 0, totalForks: 0, totalRepos: 1 }
+      );
+      expect(section).toContain('No recent activity');
     });
   });
 
