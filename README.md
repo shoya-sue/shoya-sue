@@ -78,8 +78,8 @@ hobbies:
 <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/>
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript"/>
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
-<img src="https://img.shields.io/badge/Shell-4EAA25?style=for-the-badge&logo=gnubash&logoColor=white" alt="Shell"/>
 <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" alt="Rust"/>
+<img src="https://img.shields.io/badge/Shell-4EAA25?style=for-the-badge&logo=gnubash&logoColor=white" alt="Shell"/>
 <img src="https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP"/>
 <img src="https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white" alt="Kotlin"/>
 <img src="https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white" alt="Ruby"/>
@@ -98,7 +98,7 @@ hobbies:
 
 <div align="center">
   <h2>📊 Weekly Activity</h2>
-  <p><code>2026/3/15 - 2026/3/22</code></p>
+  <p><code>2026/3/22 - 2026/3/29</code></p>
 </div>
 
 <table align="center" width="100%">
@@ -111,9 +111,12 @@ hobbies:
 <table>
 <tr>
 <td align="center">
-<img src="https://img.shields.io/badge/Commits-0-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
+<img src="https://img.shields.io/badge/Commits-10-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
 </td>
 </tr>
+<tr><td align="center">
+<img src="https://img.shields.io/badge/Pull%20Requests-3-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/>
+</td></tr>
 </table>
 </div>
 
@@ -121,22 +124,22 @@ hobbies:
 <div align="center">
 <table>
 <tr>
-<td align="center"><img src="https://img.shields.io/badge/TypeScript-62.6%25-purple?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/></td>
-<td align="center"><img src="https://img.shields.io/badge/JavaScript-17.5%25-purple?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript"/></td>
+<td align="center"><img src="https://img.shields.io/badge/TypeScript-72.9%25-purple?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/></td>
+<td align="center"><img src="https://img.shields.io/badge/JavaScript-10.3%25-purple?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript"/></td>
 </tr>
 <tr>
-<td align="center"><img src="https://img.shields.io/badge/Python-4.8%25-purple?style=for-the-badge&logo=python&logoColor=white" alt="Python"/></td>
-<td align="center"><img src="https://img.shields.io/badge/Shell-3.7%25-purple?style=for-the-badge&logo=shell&logoColor=white" alt="Shell"/></td>
+<td align="center"><img src="https://img.shields.io/badge/Python-6%25-purple?style=for-the-badge&logo=python&logoColor=white" alt="Python"/></td>
+<td align="center"><img src="https://img.shields.io/badge/Rust-3.5%25-purple?style=for-the-badge&logo=rust&logoColor=white" alt="Rust"/></td>
 </tr>
 <tr>
-<td align="center"><img src="https://img.shields.io/badge/CSS-3.4%25-purple?style=for-the-badge&logo=css&logoColor=white" alt="CSS"/></td>
+<td align="center"><img src="https://img.shields.io/badge/CSS-2.5%25-purple?style=for-the-badge&logo=css&logoColor=white" alt="CSS"/></td>
 </tr>
 </table>
 </div>
 
 ### 📂 Active Repositories
 <div align="center">
-<img src="https://img.shields.io/badge/NVIDIA%2FNemoClaw-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="NVIDIA/NemoClaw"/> <img src="https://img.shields.io/badge/VibeCordingJsons-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="VibeCordingJsons"/> <img src="https://img.shields.io/badge/shoya-sue-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="shoya-sue"/>
+<img src="https://img.shields.io/badge/VibeCordingJsons-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="VibeCordingJsons"/> <img src="https://img.shields.io/badge/shoya-sue-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="shoya-sue"/> <img src="https://img.shields.io/badge/solana-weekly-report-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="solana-weekly-report"/> <img src="https://img.shields.io/badge/affaan-m%2Feverything-claude-code-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="affaan-m/everything-claude-code"/> <img src="https://img.shields.io/badge/collaborator-ai%2Fcollab-public-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="collaborator-ai/collab-public"/>
 </div>
 
 </td>
@@ -145,7 +148,10 @@ hobbies:
 ### 📋 Recent Activity
 
 <div align="left">
-<p><em>No recent commits</em></p>
+<p>🗑️ Branch/Repo deleted: <strong>3</strong></p>
+<p>🌱 Branch/Repo created: <strong>3</strong></p>
+<p>🏷️ Releases: <strong>2</strong></p>
+<p>⭐ Starred a repo: <strong>2</strong></p>
 </div>
 
 ### 📈 Repository Stats
@@ -160,7 +166,7 @@ hobbies:
 <img src="https://img.shields.io/badge/🍴%20Forks-0-blue?style=for-the-badge" alt="Forks"/>
 </td>
 <td align="center">
-<img src="https://img.shields.io/badge/📦%20Repos-37-grey?style=for-the-badge" alt="Repos"/>
+<img src="https://img.shields.io/badge/📦%20Repos-35-grey?style=for-the-badge" alt="Repos"/>
 </td>
 </tr>
 </table>
@@ -171,7 +177,7 @@ hobbies:
 </table>
 
 <div align="center">
-  <sub>🤖 <em>Last updated: 2026年3月22日 00:24</em></sub>
+  <sub>🤖 <em>Last updated: 2026年3月29日 00:27</em></sub>
 </div>
 
 <!-- WEEKLY_ACTIVITY_END -->
