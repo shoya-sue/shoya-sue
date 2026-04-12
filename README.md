@@ -98,7 +98,7 @@ hobbies:
 
 <div align="center">
   <h2>📊 Weekly Activity</h2>
-  <p><code>2026/3/29 - 2026/4/5</code></p>
+  <p><code>2026/4/5 - 2026/4/12</code></p>
 </div>
 
 <table align="center" width="100%">
@@ -111,11 +111,11 @@ hobbies:
 <table>
 <tr>
 <td align="center">
-<img src="https://img.shields.io/badge/Commits-53-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
+<img src="https://img.shields.io/badge/Commits-58-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
 </td>
 </tr>
 <tr><td align="center">
-<img src="https://img.shields.io/badge/Pull%20Requests-11-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/>
+<img src="https://img.shields.io/badge/Pull%20Requests-13-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/>
 </td></tr>
 </table>
 </div>
@@ -124,12 +124,12 @@ hobbies:
 <div align="center">
 <table>
 <tr>
-<td align="center"><img src="https://img.shields.io/badge/TypeScript-55.5%25-purple?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/></td>
-<td align="center"><img src="https://img.shields.io/badge/Python-27.1%25-purple?style=for-the-badge&logo=python&logoColor=white" alt="Python"/></td>
+<td align="center"><img src="https://img.shields.io/badge/TypeScript-54.8%25-purple?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/></td>
+<td align="center"><img src="https://img.shields.io/badge/Python-28.2%25-purple?style=for-the-badge&logo=python&logoColor=white" alt="Python"/></td>
 </tr>
 <tr>
-<td align="center"><img src="https://img.shields.io/badge/JavaScript-8.1%25-purple?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript"/></td>
-<td align="center"><img src="https://img.shields.io/badge/Rust-2.7%25-purple?style=for-the-badge&logo=rust&logoColor=white" alt="Rust"/></td>
+<td align="center"><img src="https://img.shields.io/badge/JavaScript-7.8%25-purple?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript"/></td>
+<td align="center"><img src="https://img.shields.io/badge/Rust-2.6%25-purple?style=for-the-badge&logo=rust&logoColor=white" alt="Rust"/></td>
 </tr>
 <tr>
 <td align="center"><img src="https://img.shields.io/badge/CSS-2.2%25-purple?style=for-the-badge&logo=css&logoColor=white" alt="CSS"/></td>
@@ -139,7 +139,7 @@ hobbies:
 
 ### 📂 Active Repositories
 <div align="center">
-<img src="https://img.shields.io/badge/agentarium-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="agentarium"/> <img src="https://img.shields.io/badge/VibeCordingJsons-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="VibeCordingJsons"/> <img src="https://img.shields.io/badge/solana-weekly-report-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="solana-weekly-report"/> <img src="https://img.shields.io/badge/shoya-sue-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="shoya-sue"/> <img src="https://img.shields.io/badge/sr2mg%2Fpersonality_engine-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="sr2mg/personality_engine"/>
+<img src="https://img.shields.io/badge/VibeCordingJsons-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="VibeCordingJsons"/> <img src="https://img.shields.io/badge/x402Explorer-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="x402Explorer"/> <img src="https://img.shields.io/badge/agentarium-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="agentarium"/> <img src="https://img.shields.io/badge/solana-weekly-report-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="solana-weekly-report"/> <img src="https://img.shields.io/badge/shoya-sue-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="shoya-sue"/>
 </div>
 
 </td>
@@ -148,10 +148,11 @@ hobbies:
 ### 📋 Recent Activity
 
 <div align="left">
-<p>🌱 Branch/Repo created: <strong>12</strong></p>
-<p>🗑️ Branch/Repo deleted: <strong>10</strong></p>
-<p>⭐ Starred a repo: <strong>7</strong></p>
-<p>🏷️ Releases: <strong>2</strong></p>
+<p>🏷️ Releases: <strong>17</strong></p>
+<p>🗑️ Branch/Repo deleted: <strong>14</strong></p>
+<p>🌱 Branch/Repo created: <strong>14</strong></p>
+<p>💬 PR review comments: <strong>7</strong></p>
+<p>👀 PR reviews: <strong>7</strong></p>
 </div>
 
 ### 📈 Repository Stats
@@ -163,10 +164,10 @@ hobbies:
 <img src="https://img.shields.io/badge/⭐%20Stars-1-yellow?style=for-the-badge" alt="Stars"/>
 </td>
 <td align="center">
-<img src="https://img.shields.io/badge/🍴%20Forks-0-blue?style=for-the-badge" alt="Forks"/>
+<img src="https://img.shields.io/badge/🍴%20Forks-1-blue?style=for-the-badge" alt="Forks"/>
 </td>
 <td align="center">
-<img src="https://img.shields.io/badge/📦%20Repos-35-grey?style=for-the-badge" alt="Repos"/>
+<img src="https://img.shields.io/badge/📦%20Repos-36-grey?style=for-the-badge" alt="Repos"/>
 </td>
 </tr>
 </table>
@@ -177,7 +178,7 @@ hobbies:
 </table>
 
 <div align="center">
-  <sub>🤖 <em>Last updated: 2026年4月5日 00:28</em></sub>
+  <sub>🤖 <em>Last updated: 2026年4月12日 00:29</em></sub>
 </div>
 
 <!-- WEEKLY_ACTIVITY_END -->
