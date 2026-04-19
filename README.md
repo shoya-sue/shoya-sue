@@ -98,7 +98,7 @@ hobbies:
 
 <div align="center">
   <h2>📊 Weekly Activity</h2>
-  <p><code>2026/4/5 - 2026/4/12</code></p>
+  <p><code>2026/4/12 - 2026/4/19</code></p>
 </div>
 
 <table align="center" width="100%">
@@ -111,11 +111,11 @@ hobbies:
 <table>
 <tr>
 <td align="center">
-<img src="https://img.shields.io/badge/Commits-58-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
+<img src="https://img.shields.io/badge/Commits-26-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
 </td>
 </tr>
 <tr><td align="center">
-<img src="https://img.shields.io/badge/Pull%20Requests-13-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/>
+<img src="https://img.shields.io/badge/Pull%20Requests-14-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/>
 </td></tr>
 </table>
 </div>
@@ -139,7 +139,7 @@ hobbies:
 
 ### 📂 Active Repositories
 <div align="center">
-<img src="https://img.shields.io/badge/VibeCordingJsons-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="VibeCordingJsons"/> <img src="https://img.shields.io/badge/x402Explorer-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="x402Explorer"/> <img src="https://img.shields.io/badge/agentarium-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="agentarium"/> <img src="https://img.shields.io/badge/solana-weekly-report-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="solana-weekly-report"/> <img src="https://img.shields.io/badge/shoya-sue-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="shoya-sue"/>
+<img src="https://img.shields.io/badge/VibeCordingJsons-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="VibeCordingJsons"/> <img src="https://img.shields.io/badge/solana-weekly-report-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="solana-weekly-report"/> <img src="https://img.shields.io/badge/shoya-sue-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="shoya-sue"/> <img src="https://img.shields.io/badge/Aratako%2FIrodori-TTS-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="Aratako/Irodori-TTS"/> <img src="https://img.shields.io/badge/rotejin%2FMotionPNGTuber-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="rotejin/MotionPNGTuber"/>
 </div>
 
 </td>
@@ -148,11 +148,11 @@ hobbies:
 ### 📋 Recent Activity
 
 <div align="left">
-<p>🏷️ Releases: <strong>17</strong></p>
-<p>🗑️ Branch/Repo deleted: <strong>14</strong></p>
-<p>🌱 Branch/Repo created: <strong>14</strong></p>
-<p>💬 PR review comments: <strong>7</strong></p>
-<p>👀 PR reviews: <strong>7</strong></p>
+<p>🌱 Branch/Repo created: <strong>13</strong></p>
+<p>🏷️ Releases: <strong>10</strong></p>
+<p>🗑️ Branch/Repo deleted: <strong>9</strong></p>
+<p>⭐ Starred a repo: <strong>3</strong></p>
+<p>💬 Issue comments: <strong>1</strong></p>
 </div>
 
 ### 📈 Repository Stats
@@ -178,7 +178,7 @@ hobbies:
 </table>
 
 <div align="center">
-  <sub>🤖 <em>Last updated: 2026年4月12日 00:29</em></sub>
+  <sub>🤖 <em>Last updated: 2026年4月19日 00:31</em></sub>
 </div>
 
 <!-- WEEKLY_ACTIVITY_END -->
