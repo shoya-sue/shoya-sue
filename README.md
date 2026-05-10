@@ -98,7 +98,7 @@ hobbies:
 
 <div align="center">
   <h2>📊 Weekly Activity</h2>
-  <p><code>2026/4/26 - 2026/5/3</code></p>
+  <p><code>2026/5/3 - 2026/5/10</code></p>
 </div>
 
 <table align="center" width="100%">
@@ -111,11 +111,11 @@ hobbies:
 <table>
 <tr>
 <td align="center">
-<img src="https://img.shields.io/badge/Commits-7-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
+<img src="https://img.shields.io/badge/Commits-6-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
 </td>
 </tr>
 <tr><td align="center">
-<img src="https://img.shields.io/badge/Pull%20Requests-5-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/>
+<img src="https://img.shields.io/badge/Pull%20Requests-1-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/>
 </td></tr>
 </table>
 </div>
@@ -148,9 +148,9 @@ hobbies:
 ### 📋 Recent Activity
 
 <div align="left">
-<p>🗑️ Branch/Repo deleted: <strong>6</strong></p>
-<p>🌱 Branch/Repo created: <strong>5</strong></p>
-<p>🏷️ Releases: <strong>4</strong></p>
+<p>🏷️ Releases: <strong>2</strong></p>
+<p>🗑️ Branch/Repo deleted: <strong>1</strong></p>
+<p>🌱 Branch/Repo created: <strong>1</strong></p>
 </div>
 
 ### 📈 Repository Stats
@@ -176,7 +176,7 @@ hobbies:
 </table>
 
 <div align="center">
-  <sub>🤖 <em>Last updated: 2026年5月3日 00:37</em></sub>
+  <sub>🤖 <em>Last updated: 2026年5月10日 00:39</em></sub>
 </div>
 
 <!-- WEEKLY_ACTIVITY_END -->
