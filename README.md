@@ -98,7 +98,7 @@ hobbies:
 
 <div align="center">
   <h2>📊 Weekly Activity</h2>
-  <p><code>2026/5/3 - 2026/5/10</code></p>
+  <p><code>2026/5/10 - 2026/5/17</code></p>
 </div>
 
 <table align="center" width="100%">
@@ -111,11 +111,11 @@ hobbies:
 <table>
 <tr>
 <td align="center">
-<img src="https://img.shields.io/badge/Commits-6-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
+<img src="https://img.shields.io/badge/Commits-50-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
 </td>
 </tr>
 <tr><td align="center">
-<img src="https://img.shields.io/badge/Pull%20Requests-1-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/>
+<img src="https://img.shields.io/badge/Pull%20Requests-25-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/>
 </td></tr>
 </table>
 </div>
@@ -124,7 +124,7 @@ hobbies:
 <div align="center">
 <table>
 <tr>
-<td align="center"><img src="https://img.shields.io/badge/TypeScript-73.5%25-purple?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/></td>
+<td align="center"><img src="https://img.shields.io/badge/TypeScript-73%25-purple?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/></td>
 <td align="center"><img src="https://img.shields.io/badge/JavaScript-9.9%25-purple?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript"/></td>
 </tr>
 <tr>
@@ -139,7 +139,7 @@ hobbies:
 
 ### 📂 Active Repositories
 <div align="center">
-<img src="https://img.shields.io/badge/VibeCordingJsons-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="VibeCordingJsons"/> <img src="https://img.shields.io/badge/solana-weekly-report-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="solana-weekly-report"/> <img src="https://img.shields.io/badge/shoya-sue-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="shoya-sue"/>
+<img src="https://img.shields.io/badge/VibeCordingJsons-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="VibeCordingJsons"/> <img src="https://img.shields.io/badge/solana-weekly-report-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="solana-weekly-report"/> <img src="https://img.shields.io/badge/shoya-sue-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="shoya-sue"/> <img src="https://img.shields.io/badge/kyegomez%2FOpenMythos-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="kyegomez/OpenMythos"/> <img src="https://img.shields.io/badge/google%2Fskills-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="google/skills"/>
 </div>
 
 </td>
@@ -148,9 +148,10 @@ hobbies:
 ### 📋 Recent Activity
 
 <div align="left">
-<p>🏷️ Releases: <strong>2</strong></p>
-<p>🗑️ Branch/Repo deleted: <strong>1</strong></p>
-<p>🌱 Branch/Repo created: <strong>1</strong></p>
+<p>🏷️ Releases: <strong>26</strong></p>
+<p>🗑️ Branch/Repo deleted: <strong>25</strong></p>
+<p>🌱 Branch/Repo created: <strong>25</strong></p>
+<p>⭐ Starred a repo: <strong>2</strong></p>
 </div>
 
 ### 📈 Repository Stats
@@ -176,7 +177,7 @@ hobbies:
 </table>
 
 <div align="center">
-  <sub>🤖 <em>Last updated: 2026年5月10日 00:39</em></sub>
+  <sub>🤖 <em>Last updated: 2026年5月17日 00:40</em></sub>
 </div>
 
 <!-- WEEKLY_ACTIVITY_END -->
