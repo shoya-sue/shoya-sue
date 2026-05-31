@@ -98,7 +98,7 @@ hobbies:
 
 <div align="center">
   <h2>📊 Weekly Activity</h2>
-  <p><code>2026/5/17 - 2026/5/24</code></p>
+  <p><code>2026/5/24 - 2026/5/31</code></p>
 </div>
 
 <table align="center" width="100%">
@@ -111,11 +111,11 @@ hobbies:
 <table>
 <tr>
 <td align="center">
-<img src="https://img.shields.io/badge/Commits-18-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
+<img src="https://img.shields.io/badge/Commits-23-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
 </td>
 </tr>
 <tr><td align="center">
-<img src="https://img.shields.io/badge/Pull%20Requests-8-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/>
+<img src="https://img.shields.io/badge/Pull%20Requests-10-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/>
 </td></tr>
 </table>
 </div>
@@ -124,8 +124,8 @@ hobbies:
 <div align="center">
 <table>
 <tr>
-<td align="center"><img src="https://img.shields.io/badge/TypeScript-72.9%25-purple?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/></td>
-<td align="center"><img src="https://img.shields.io/badge/JavaScript-9.9%25-purple?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript"/></td>
+<td align="center"><img src="https://img.shields.io/badge/TypeScript-72.8%25-purple?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/></td>
+<td align="center"><img src="https://img.shields.io/badge/JavaScript-9.8%25-purple?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript"/></td>
 </tr>
 <tr>
 <td align="center"><img src="https://img.shields.io/badge/Python-5.8%25-purple?style=for-the-badge&logo=python&logoColor=white" alt="Python"/></td>
@@ -148,9 +148,9 @@ hobbies:
 ### 📋 Recent Activity
 
 <div align="left">
-<p>🏷️ Releases: <strong>8</strong></p>
-<p>🗑️ Branch/Repo deleted: <strong>8</strong></p>
-<p>🌱 Branch/Repo created: <strong>8</strong></p>
+<p>🏷️ Releases: <strong>10</strong></p>
+<p>🗑️ Branch/Repo deleted: <strong>10</strong></p>
+<p>🌱 Branch/Repo created: <strong>10</strong></p>
 </div>
 
 ### 📈 Repository Stats
@@ -176,7 +176,7 @@ hobbies:
 </table>
 
 <div align="center">
-  <sub>🤖 <em>Last updated: 2026年5月24日 00:42</em></sub>
+  <sub>🤖 <em>Last updated: 2026年5月31日 00:46</em></sub>
 </div>
 
 <!-- WEEKLY_ACTIVITY_END -->
