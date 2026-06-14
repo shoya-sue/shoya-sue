@@ -98,7 +98,7 @@ hobbies:
 
 <div align="center">
   <h2>📊 Weekly Activity</h2>
-  <p><code>2026/5/31 - 2026/6/7</code></p>
+  <p><code>2026/6/7 - 2026/6/14</code></p>
 </div>
 
 <table align="center" width="100%">
@@ -111,11 +111,14 @@ hobbies:
 <table>
 <tr>
 <td align="center">
-<img src="https://img.shields.io/badge/Commits-8-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
+<img src="https://img.shields.io/badge/Commits-27-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
 </td>
 </tr>
 <tr><td align="center">
-<img src="https://img.shields.io/badge/Pull%20Requests-3-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/>
+<img src="https://img.shields.io/badge/Pull%20Requests-10-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/>
+</td></tr>
+<tr><td align="center">
+<img src="https://img.shields.io/badge/Issues-1-orange?style=for-the-badge&logo=github&logoColor=white" alt="Issues"/>
 </td></tr>
 </table>
 </div>
@@ -124,22 +127,22 @@ hobbies:
 <div align="center">
 <table>
 <tr>
-<td align="center"><img src="https://img.shields.io/badge/TypeScript-72.7%25-purple?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/></td>
+<td align="center"><img src="https://img.shields.io/badge/TypeScript-72.5%25-purple?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/></td>
 <td align="center"><img src="https://img.shields.io/badge/JavaScript-9.8%25-purple?style=for-the-badge&logo=javascript&logoColor=white" alt="JavaScript"/></td>
 </tr>
 <tr>
-<td align="center"><img src="https://img.shields.io/badge/Python-5.8%25-purple?style=for-the-badge&logo=python&logoColor=white" alt="Python"/></td>
+<td align="center"><img src="https://img.shields.io/badge/Python-5.7%25-purple?style=for-the-badge&logo=python&logoColor=white" alt="Python"/></td>
 <td align="center"><img src="https://img.shields.io/badge/Rust-3.4%25-purple?style=for-the-badge&logo=rust&logoColor=white" alt="Rust"/></td>
 </tr>
 <tr>
-<td align="center"><img src="https://img.shields.io/badge/Shell-2.5%25-purple?style=for-the-badge&logo=shell&logoColor=white" alt="Shell"/></td>
+<td align="center"><img src="https://img.shields.io/badge/Shell-2.8%25-purple?style=for-the-badge&logo=shell&logoColor=white" alt="Shell"/></td>
 </tr>
 </table>
 </div>
 
 ### 📂 Active Repositories
 <div align="center">
-<img src="https://img.shields.io/badge/VibeCordingJsons-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="VibeCordingJsons"/> <img src="https://img.shields.io/badge/solana-weekly-report-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="solana-weekly-report"/> <img src="https://img.shields.io/badge/shoya-sue-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="shoya-sue"/> <img src="https://img.shields.io/badge/hylo-so%2Fsdk-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="hylo-so/sdk"/> <img src="https://img.shields.io/badge/ideogram-oss%2Fideogram4-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="ideogram-oss/ideogram4"/>
+<img src="https://img.shields.io/badge/VibeCordingJsons-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="VibeCordingJsons"/> <img src="https://img.shields.io/badge/solana-weekly-report-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="solana-weekly-report"/> <img src="https://img.shields.io/badge/shoya-sue-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="shoya-sue"/> <img src="https://img.shields.io/badge/convert-media-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="convert-media"/>
 </div>
 
 </td>
@@ -148,10 +151,9 @@ hobbies:
 ### 📋 Recent Activity
 
 <div align="left">
-<p>⭐ Starred a repo: <strong>3</strong></p>
-<p>🌱 Branch/Repo created: <strong>3</strong></p>
-<p>🗑️ Branch/Repo deleted: <strong>2</strong></p>
-<p>🏷️ Releases: <strong>1</strong></p>
+<p>🏷️ Releases: <strong>11</strong></p>
+<p>🗑️ Branch/Repo deleted: <strong>11</strong></p>
+<p>🌱 Branch/Repo created: <strong>10</strong></p>
 </div>
 
 ### 📈 Repository Stats
@@ -177,7 +179,7 @@ hobbies:
 </table>
 
 <div align="center">
-  <sub>🤖 <em>Last updated: 2026年6月7日 00:47</em></sub>
+  <sub>🤖 <em>Last updated: 2026年6月14日 00:49</em></sub>
 </div>
 
 <!-- WEEKLY_ACTIVITY_END -->
