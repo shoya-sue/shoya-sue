@@ -98,7 +98,7 @@ hobbies:
 
 <div align="center">
   <h2>📊 Weekly Activity</h2>
-  <p><code>2026/6/14 - 2026/6/21</code></p>
+  <p><code>2026/6/21 - 2026/6/28</code></p>
 </div>
 
 <table align="center" width="100%">
@@ -111,14 +111,11 @@ hobbies:
 <table>
 <tr>
 <td align="center">
-<img src="https://img.shields.io/badge/Commits-12-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
+<img src="https://img.shields.io/badge/Commits-16-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>
 </td>
 </tr>
 <tr><td align="center">
-<img src="https://img.shields.io/badge/Pull%20Requests-5-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/>
-</td></tr>
-<tr><td align="center">
-<img src="https://img.shields.io/badge/Issues-1-orange?style=for-the-badge&logo=github&logoColor=white" alt="Issues"/>
+<img src="https://img.shields.io/badge/Pull%20Requests-7-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/>
 </td></tr>
 </table>
 </div>
@@ -142,7 +139,7 @@ hobbies:
 
 ### 📂 Active Repositories
 <div align="center">
-<img src="https://img.shields.io/badge/VibeCordingJsons-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="VibeCordingJsons"/> <img src="https://img.shields.io/badge/solana-weekly-report-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="solana-weekly-report"/> <img src="https://img.shields.io/badge/shoya-sue-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="shoya-sue"/> <img src="https://img.shields.io/badge/rotejin%2Ftomari-guruguru-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="rotejin/tomari-guruguru"/>
+<img src="https://img.shields.io/badge/VibeCordingJsons-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="VibeCordingJsons"/> <img src="https://img.shields.io/badge/solana-weekly-report-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="solana-weekly-report"/> <img src="https://img.shields.io/badge/shoya-sue-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="shoya-sue"/>
 </div>
 
 </td>
@@ -151,10 +148,9 @@ hobbies:
 ### 📋 Recent Activity
 
 <div align="left">
-<p>🗑️ Branch/Repo deleted: <strong>5</strong></p>
-<p>🌱 Branch/Repo created: <strong>5</strong></p>
+<p>🗑️ Branch/Repo deleted: <strong>7</strong></p>
+<p>🌱 Branch/Repo created: <strong>7</strong></p>
 <p>🏷️ Releases: <strong>2</strong></p>
-<p>⭐ Starred a repo: <strong>1</strong></p>
 </div>
 
 ### 📈 Repository Stats
@@ -180,7 +176,7 @@ hobbies:
 </table>
 
 <div align="center">
-  <sub>🤖 <em>Last updated: 2026年6月21日 00:50</em></sub>
+  <sub>🤖 <em>Last updated: 2026年6月28日 00:45</em></sub>
 </div>
 
 <!-- WEEKLY_ACTIVITY_END -->
