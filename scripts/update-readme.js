@@ -45,6 +45,26 @@ const LANGUAGE_BADGE_MAP = {
 };
 
 // ============================================================
+// GitHub language colors (for the self-hosted SVG language bar)
+// ============================================================
+const LANGUAGE_COLOR = {
+  TypeScript: '#3178c6', JavaScript: '#f1e05a', Python: '#3572A5',
+  Rust: '#dea584', Go: '#00ADD8', Ruby: '#701516', PHP: '#4F5D95',
+  Java: '#b07219', C: '#555555', 'C++': '#f34b7d', 'C#': '#178600',
+  Swift: '#F05138', Kotlin: '#A97BFF', Dart: '#00B4AB', Shell: '#89e051',
+  Lua: '#000080', Zig: '#ec915c', HTML: '#e34c26', CSS: '#563d7c',
+  SCSS: '#c6538c', Vue: '#41b883', Dockerfile: '#384d54', Solidity: '#AA6746',
+  Makefile: '#427819', Swiftpm: '#F05138',
+};
+const DEFAULT_LANG_COLOR = '#858585';
+
+// Theme tokens for the self-hosted SVG cards (GitHub dark / light).
+const SVG_THEME = {
+  dark:  { bg: '#0d1117', border: '#30363d', title: '#58a6ff', text: '#c9d1d9', muted: '#8b949e', track: '#21262d' },
+  light: { bg: '#ffffff', border: '#d0d7de', title: '#0969da', text: '#1f2328', muted: '#656d76', track: '#eaeef2' },
+};
+
+// ============================================================
 // GitHubDataCollector – fetch raw data from GitHub APIs
 // ============================================================
 class GitHubDataCollector {
@@ -91,7 +111,10 @@ class GitHubDataCollector {
           cursor,
         });
 
-        const repoData = result.user.repositories;
+        const repoData = result?.user?.repositories;
+        if (!repoData) {
+          throw new Error(`GraphQL: no repositories for user "${this.owner}"`);
+        }
         hasNextPage = repoData.pageInfo.hasNextPage;
         cursor = repoData.pageInfo.endCursor;
 
@@ -152,6 +175,8 @@ class GitHubDataCollector {
             languageBytes[lang] = (languageBytes[lang] || 0) + bytes;
           }
         }
+      } else if (repos.length > 0) {
+        console.warn(`[REST] Rate limit too low (remaining=${remaining}); skipping language fetch — language bar may be empty`);
       }
 
       console.log(`[REST] Fetched ${repos.length} repositories`);
@@ -429,165 +454,130 @@ class HealthChecker {
   }
 }
 
-// Critical external services used in the README
+// Remaining external dependency in the README. Stats/activity cards are now
+// self-hosted SVGs committed to assets/, so shields.io (tech badges) is the
+// only third-party image service left to monitor.
 const README_EXTERNAL_SERVICES = [
-  { name: 'Capsule Render', url: 'https://capsule-render.vercel.app/api?type=waving&color=gradient&height=1&section=header' },
-  { name: 'Typing SVG', url: 'https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=1&lines=test' },
-  { name: 'GitHub Stats', url: 'https://github-stats-alpha.vercel.app/api?username=shoya-sue' },
-  { name: 'Activity Graph', url: 'https://github-readme-activity-graph.vercel.app/graph?username=shoya-sue' },
-  { name: 'GitHub Trophies', url: 'https://github-trophies.vercel.app/?username=shoya-sue' },
   { name: 'Shields.io', url: 'https://img.shields.io/badge/test-test-blue' },
-  { name: 'Profile Views', url: 'https://komarev.com/ghpvc/?username=shoya-sue' },
 ];
+
+// ============================================================
+// SvgCardRenderer – generate self-hosted SVG stat cards
+// (zero third-party image-service dependency)
+// ============================================================
+class SvgCardRenderer {
+  /**
+   * Escape a string for safe inclusion in SVG/XML text.
+   * @param {unknown} value
+   * @returns {string}
+   */
+  static escapeXml(value) {
+    return String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&apos;');
+  }
+
+  /**
+   * Render a compact GitHub stats card as a standalone SVG string.
+   * One card holds weekly activity, all-time repo stats and a top-language bar.
+   *
+   * @param {{ owner: string, weeklyStats: object, languages: Array, repoStats: object }} data
+   * @param {'dark'|'light'} theme
+   * @returns {string} SVG markup
+   */
+  static generateStatsCard({ owner, weeklyStats, languages, repoStats }, theme = 'dark') {
+    const t = SVG_THEME[theme] || SVG_THEME.dark;
+    const W = 480;
+    const H = 200;
+    const pad = 25;
+    const barW = W - pad * 2;
+    const barY = 138;
+    const barH = 8;
+
+    const ws = weeklyStats || { commits: 0, pullRequests: 0, issues: 0, reviews: 0 };
+    const rs = repoStats || { totalStars: 0, totalForks: 0, totalRepos: 0 };
+    const langs = (languages || []).slice(0, 5);
+
+    // Weekly highlights line (always show commits + PRs; issues/reviews when > 0)
+    const weeklyParts = [`${ws.commits} commits`, `${ws.pullRequests} PRs`];
+    if (ws.issues > 0) weeklyParts.push(`${ws.issues} issues`);
+    if (ws.reviews > 0) weeklyParts.push(`${ws.reviews} reviews`);
+    const weeklyLine = weeklyParts.join('  ·  ');
+    const allTimeLine = `${rs.totalStars} stars  ·  ${rs.totalForks} forks  ·  ${rs.totalRepos} repos`;
+
+    // Segmented language bar (normalised across shown languages)
+    const shownTotal = langs.reduce((sum, l) => sum + l.percent, 0) || 1;
+    let segX = pad;
+    const segments = langs.map((l) => {
+      const w = (l.percent / shownTotal) * barW;
+      const color = LANGUAGE_COLOR[l.name] || DEFAULT_LANG_COLOR;
+      const seg = `<rect x="${segX.toFixed(1)}" y="${barY}" width="${Math.max(0, w).toFixed(1)}" height="${barH}" fill="${color}"/>`;
+      segX += w;
+      return seg;
+    }).join('');
+
+    // Legend with simple width-based wrapping
+    const legendStartY = 170;
+    const lineHeight = 18;
+    let lx = pad;
+    let ly = legendStartY;
+    const legend = langs.map((l) => {
+      const color = LANGUAGE_COLOR[l.name] || DEFAULT_LANG_COLOR;
+      const label = `${l.name} ${l.percent}%`;
+      const itemW = 16 + label.length * 6.2 + 14;
+      if (lx + itemW > W - pad && lx > pad) {
+        lx = pad;
+        ly += lineHeight;
+      }
+      const dot = `<circle cx="${(lx + 5).toFixed(1)}" cy="${(ly - 4).toFixed(1)}" r="5" fill="${color}"/>`;
+      const text = `<text x="${(lx + 16).toFixed(1)}" y="${ly}" fill="${t.text}" font-size="11">${SvgCardRenderer.escapeXml(label)}</text>`;
+      lx += itemW;
+      return dot + text;
+    }).join('');
+
+    const langBar = langs.length > 0
+      ? [
+          `<text x="${pad}" y="128" fill="${t.muted}" font-size="12">Top languages</text>`,
+          `<rect x="${pad}" y="${barY}" width="${barW}" height="${barH}" rx="4" fill="${t.track}"/>`,
+          `<defs><clipPath id="bar-${theme}"><rect x="${pad}" y="${barY}" width="${barW}" height="${barH}" rx="4"/></clipPath></defs>`,
+          `<g clip-path="url(#bar-${theme})">${segments}</g>`,
+          legend,
+        ].join('\n')
+      : '';
+
+    return [
+      `<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${SvgCardRenderer.escapeXml(owner)} GitHub statistics">`,
+      `<style>text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;}</style>`,
+      `<rect x="0.5" y="0.5" width="${W - 1}" height="${H - 1}" rx="6" fill="${t.bg}" stroke="${t.border}"/>`,
+      `<text x="${pad}" y="40" fill="${t.title}" font-size="17" font-weight="600">${SvgCardRenderer.escapeXml(owner)} · GitHub Stats</text>`,
+      `<text x="${pad}" y="76" fill="${t.muted}" font-size="12">This week</text>`,
+      `<text x="${pad + 78}" y="76" fill="${t.text}" font-size="13" font-weight="500">${SvgCardRenderer.escapeXml(weeklyLine)}</text>`,
+      `<text x="${pad}" y="102" fill="${t.muted}" font-size="12">All time</text>`,
+      `<text x="${pad + 78}" y="102" fill="${t.text}" font-size="13" font-weight="500">${SvgCardRenderer.escapeXml(allTimeLine)}</text>`,
+      langBar,
+      `</svg>`,
+    ].filter(Boolean).join('\n');
+  }
+}
 
 // ============================================================
 // ReadmeRenderer – generate the Markdown/HTML content
 // ============================================================
 class ReadmeRenderer {
   /**
-   * Generate the Weekly Activity section content.
+   * Generate the Stats section content: a single <picture> that points at the
+   * self-hosted dark/light SVG cards (written separately to assets/), plus a
+   * last-updated timestamp. The data itself lives in the SVG; this only wires
+   * up theme-aware image references.
+   *
+   * @param {string} owner
+   * @param {string} [assetsDir]
+   * @returns {string}
    */
-  static generateActivitySection(weeklyStats, languages, repoStats) {
-    const stats = weeklyStats;
-
-    if (!stats) {
-      return [
-        '',
-        '<div align="center">',
-        '  <h2>📊 Weekly Activity</h2>',
-        '  <p><em>No recent activity data available</em></p>',
-        '</div>',
-        '',
-      ].join('\n');
-    }
-
-    const lines = [];
-
-    lines.push('');
-    lines.push('<div align="center">');
-    lines.push('  <h2>📊 Weekly Activity</h2>');
-    lines.push(`  <p><code>${stats.weekStart} - ${stats.weekEnd}</code></p>`);
-    lines.push('</div>');
-    lines.push('');
-    lines.push('<table align="center" width="100%">');
-    lines.push('<tr>');
-    lines.push('<td width="50%" align="center">');
-    lines.push('');
-
-    // Left column: Highlights
-    lines.push('### 🚀 This Week\'s Highlights');
-    lines.push('');
-    lines.push('<div align="center">');
-    lines.push('<table>');
-    lines.push('<tr>');
-    lines.push('<td align="center">');
-    lines.push(`<img src="https://img.shields.io/badge/Commits-${stats.commits}-blue?style=for-the-badge&logo=git&logoColor=white" alt="Commits"/>`);
-    lines.push('</td>');
-    lines.push('</tr>');
-
-    if (stats.pullRequests > 0) {
-      lines.push('<tr><td align="center">');
-      lines.push(`<img src="https://img.shields.io/badge/Pull%20Requests-${stats.pullRequests}-green?style=for-the-badge&logo=github&logoColor=white" alt="PRs"/>`);
-      lines.push('</td></tr>');
-    }
-    if (stats.issues > 0) {
-      lines.push('<tr><td align="center">');
-      lines.push(`<img src="https://img.shields.io/badge/Issues-${stats.issues}-orange?style=for-the-badge&logo=github&logoColor=white" alt="Issues"/>`);
-      lines.push('</td></tr>');
-    }
-    if (stats.reviews > 0) {
-      lines.push('<tr><td align="center">');
-      lines.push(`<img src="https://img.shields.io/badge/Reviews-${stats.reviews}-purple?style=for-the-badge&logo=github&logoColor=white" alt="Reviews"/>`);
-      lines.push('</td></tr>');
-    }
-    lines.push('</table>');
-    lines.push('</div>');
-    lines.push('');
-
-    // Languages
-    if (languages && languages.length > 0) {
-      lines.push('### 💻 Languages Used');
-      lines.push('<div align="center">');
-      lines.push('<table>');
-      for (let i = 0; i < languages.length; i += 2) {
-        lines.push('<tr>');
-        for (let j = i; j < Math.min(i + 2, languages.length); j++) {
-          const lang = languages[j];
-          const encodedName = encodeURIComponent(lang.name);
-          lines.push(`<td align="center"><img src="https://img.shields.io/badge/${encodedName}-${lang.percent}%25-purple?style=for-the-badge&logo=${lang.name.toLowerCase()}&logoColor=white" alt="${lang.name}"/></td>`);
-        }
-        lines.push('</tr>');
-      }
-      lines.push('</table>');
-      lines.push('</div>');
-      lines.push('');
-    }
-
-    // Active Repos
-    if (stats.activeRepos && stats.activeRepos.length > 0) {
-      lines.push('### 📂 Active Repositories');
-      lines.push('<div align="center">');
-      const repoBadges = stats.activeRepos.slice(0, 5).map(r => {
-        const encoded = encodeURIComponent(r);
-        return `<img src="https://img.shields.io/badge/${encoded}-active-brightgreen?style=flat-square&logo=github&logoColor=white" alt="${r}"/>`;
-      });
-      lines.push(repoBadges.join(' '));
-      lines.push('</div>');
-      lines.push('');
-    }
-
-    lines.push('</td>');
-    lines.push('<td width="50%" align="center">');
-    lines.push('');
-
-    // Right column: Recent Activity
-    lines.push('### 📋 Recent Activity');
-    lines.push('');
-    lines.push('<div align="left">');
-    if (stats.commitMessages.length > 0) {
-      const emojis = ['🎯', '🔧', '✨', '🐛', '📝', '🚀', '💡', '🔨'];
-      stats.commitMessages.slice(0, 5).forEach((c, index) => {
-        const firstLine = c.message.split('\n')[0];
-        const shortMessage = firstLine.length > 40 ? firstLine.substring(0, 40) + '...' : firstLine;
-        const emoji = emojis[index] || '📝';
-        lines.push(`<p>${emoji} <code>[${c.repo}]</code> ${shortMessage}</p>`);
-      });
-    } else if (stats.otherActivity && stats.otherActivity.length > 0) {
-      stats.otherActivity.slice(0, 5).forEach(a => {
-        lines.push(`<p>${a.label}: <strong>${a.count}</strong></p>`);
-      });
-    } else {
-      lines.push('<p><em>No recent activity</em></p>');
-    }
-    lines.push('</div>');
-    lines.push('');
-
-    // Repository Stats
-    lines.push('### 📈 Repository Stats');
-    lines.push('');
-    lines.push('<div align="center">');
-    lines.push('<table>');
-    lines.push('<tr>');
-    if (repoStats) {
-      lines.push('<td align="center">');
-      lines.push(`<img src="https://img.shields.io/badge/⭐%20Stars-${repoStats.totalStars}-yellow?style=for-the-badge" alt="Stars"/>`);
-      lines.push('</td>');
-      lines.push('<td align="center">');
-      lines.push(`<img src="https://img.shields.io/badge/🍴%20Forks-${repoStats.totalForks}-blue?style=for-the-badge" alt="Forks"/>`);
-      lines.push('</td>');
-      lines.push('<td align="center">');
-      lines.push(`<img src="https://img.shields.io/badge/📦%20Repos-${repoStats.totalRepos}-grey?style=for-the-badge" alt="Repos"/>`);
-      lines.push('</td>');
-    }
-    lines.push('</tr>');
-    lines.push('</table>');
-    lines.push('</div>');
-    lines.push('');
-    lines.push('</td>');
-    lines.push('</tr>');
-    lines.push('</table>');
-    lines.push('');
-
+  static generateActivitySection(owner, assetsDir = 'assets') {
     const now = new Date().toLocaleDateString('ja-JP', {
       year: 'numeric',
       month: 'long',
@@ -595,68 +585,48 @@ class ReadmeRenderer {
       hour: '2-digit',
       minute: '2-digit',
     });
-    lines.push('<div align="center">');
-    lines.push(`  <sub>🤖 <em>Last updated: ${now}</em></sub>`);
-    lines.push('</div>');
-    lines.push('');
+    const dark = `./${assetsDir}/github-stats-dark.svg`;
+    const light = `./${assetsDir}/github-stats-light.svg`;
 
-    return lines.join('\n');
+    return [
+      '',
+      '<div align="center">',
+      '  <picture>',
+      `    <source media="(prefers-color-scheme: dark)" srcset="${dark}">`,
+      `    <source media="(prefers-color-scheme: light)" srcset="${light}">`,
+      `    <img src="${dark}" alt="${owner} の GitHub Stats" width="480">`,
+      '  </picture>',
+      '  <br>',
+      `  <sub>🤖 <em>Last updated: ${now}</em></sub>`,
+      '</div>',
+      '',
+    ].join('\n');
   }
 
   /**
-   * Generate the Tech Arsenal section dynamically from actual repo languages.
-   * Merges detected languages with a curated list of known frameworks/tools.
+   * Generate the Tech Stack section dynamically from actual repo languages.
+   * Minimal design: a single centered row of `flat` badges for the top-N
+   * languages (by bytes) that have a known badge mapping.
+   *
+   * @param {Record<string, number>} languageBytes
+   * @param {number} [topN]
+   * @returns {string}
    */
-  static generateTechArsenalSection(languageBytes) {
-    const lines = [];
+  static generateTechArsenalSection(languageBytes, topN = 8) {
+    const sorted = Object.entries(languageBytes)
+      .sort((a, b) => b[1] - a[1])
+      .map(([lang]) => lang)
+      .filter((lang) => LANGUAGE_BADGE_MAP[lang])
+      .slice(0, topN);
 
-    // Categorize detected languages
-    const programmingLangs = [];
-    const markupLangs = [];
-    const otherLangs = [];
-
-    const PROGRAMMING = ['JavaScript', 'TypeScript', 'Rust', 'Python', 'Go', 'Ruby', 'PHP', 'Java', 'C', 'C++', 'C#', 'Swift', 'Kotlin', 'Dart', 'Shell', 'Lua', 'Zig'];
-    const MARKUP = ['HTML', 'CSS', 'SCSS', 'Vue'];
-
-    // Sort by bytes descending
-    const sorted = Object.entries(languageBytes).sort((a, b) => b[1] - a[1]);
-
-    for (const [lang] of sorted) {
-      if (PROGRAMMING.includes(lang)) programmingLangs.push(lang);
-      else if (MARKUP.includes(lang)) markupLangs.push(lang);
-      else otherLangs.push(lang);
+    const lines = ['', '<div align="center">', ''];
+    for (const lang of sorted) {
+      const badge = LANGUAGE_BADGE_MAP[lang];
+      const encoded = encodeURIComponent(lang);
+      const altText = SvgCardRenderer.escapeXml(lang);
+      lines.push(`<img src="https://img.shields.io/badge/${encoded}-${badge.color}?style=flat&logo=${badge.logo}&logoColor=${badge.logoColor}" alt="${altText}"/>`);
     }
-
     lines.push('');
-    lines.push('<div align="center">');
-    lines.push('');
-
-    // Programming Languages
-    if (programmingLangs.length > 0) {
-      lines.push('### 💻 Programming Languages');
-      for (const lang of programmingLangs) {
-        const badge = LANGUAGE_BADGE_MAP[lang];
-        if (badge) {
-          const encoded = encodeURIComponent(lang);
-          lines.push(`<img src="https://img.shields.io/badge/${encoded}-${badge.color}?style=for-the-badge&logo=${badge.logo}&logoColor=${badge.logoColor}" alt="${lang}"/>`);
-        }
-      }
-      lines.push('');
-    }
-
-    // Frontend / Markup
-    if (markupLangs.length > 0) {
-      lines.push('### 🌐 Frontend');
-      for (const lang of markupLangs) {
-        const badge = LANGUAGE_BADGE_MAP[lang];
-        if (badge) {
-          const encoded = encodeURIComponent(lang);
-          lines.push(`<img src="https://img.shields.io/badge/${encoded}-${badge.color}?style=for-the-badge&logo=${badge.logo}&logoColor=${badge.logoColor}" alt="${lang}"/>`);
-        }
-      }
-      lines.push('');
-    }
-
     lines.push('</div>');
     lines.push('');
 
@@ -760,9 +730,33 @@ class ReadmeUpdater {
   constructor(options = {}) {
     this.octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
     this.owner = process.env.GITHUB_OWNER || 'shoya-sue';
+    // Fail fast on an invalid owner (GitHub usernames: 1-39 chars, alphanumeric or hyphen).
+    if (!/^[A-Za-z0-9-]{1,39}$/.test(this.owner)) {
+      throw new Error(`Invalid GitHub owner: "${this.owner}"`);
+    }
     this.dryRun = options.dryRun || process.env.DRY_RUN === 'true';
     this.skipHealthCheck = options.skipHealthCheck || process.env.SKIP_HEALTH_CHECK === 'true';
     this.collector = new GitHubDataCollector(this.octokit, this.owner);
+  }
+
+  /**
+   * Write the generated SVG stat cards to assets/. Throws a descriptive error
+   * if the directory or files cannot be written (surfaced in CI logs).
+   *
+   * @param {Record<string, string>} svgCards - filename → SVG content
+   * @returns {number} number of files written
+   */
+  writeSvgCards(svgCards) {
+    const assetsDir = path.join(__dirname, '..', 'assets');
+    try {
+      fs.mkdirSync(assetsDir, { recursive: true });
+      for (const [filename, svg] of Object.entries(svgCards)) {
+        fs.writeFileSync(path.join(assetsDir, filename), svg);
+      }
+    } catch (error) {
+      throw new Error(`Failed to write SVG cards to ${assetsDir}: ${error.message}`);
+    }
+    return Object.keys(svgCards).length;
   }
 
   async updateReadme() {
@@ -788,13 +782,27 @@ class ReadmeUpdater {
       console.log(`Languages: ${languages.map(l => `${l.name}(${l.percent}%)`).join(', ') || '(none)'}`);
       console.log(`Stars: ${repoStats.totalStars}, Forks: ${repoStats.totalForks}, Repos: ${repoStats.totalRepos}`);
 
-      // 3. Read current README
+      // 3. Generate the self-hosted SVG stat cards (dark + light) and write
+      //    them to assets/. These replace all third-party stat-image services.
+      const cardData = { owner: this.owner, weeklyStats, languages, repoStats };
+      const svgCards = {
+        'github-stats-dark.svg': SvgCardRenderer.generateStatsCard(cardData, 'dark'),
+        'github-stats-light.svg': SvgCardRenderer.generateStatsCard(cardData, 'light'),
+      };
+      if (this.dryRun) {
+        console.log('\n🔍 DRY RUN – skipping SVG card write (cards generated in memory)');
+      } else {
+        const written = this.writeSvgCards(svgCards);
+        console.log(`\n✅ Wrote ${written} SVG stat card(s) to assets/`);
+      }
+
+      // 4. Read current README
       const readmePath = path.join(__dirname, '..', 'README.md');
       const readmeContent = fs.readFileSync(readmePath, 'utf8');
 
-      // 4. Render and replace Weekly Activity section
+      // 5. Render and replace the Stats section (theme-aware <picture> wiring)
       let updatedContent = readmeContent;
-      const activitySection = ReadmeRenderer.generateActivitySection(weeklyStats, languages, repoStats);
+      const activitySection = ReadmeRenderer.generateActivitySection(this.owner);
       updatedContent = ReadmeWriter.replaceSection(
         updatedContent, activitySection,
         MARKER_ACTIVITY_START, MARKER_ACTIVITY_END
@@ -812,8 +820,9 @@ class ReadmeUpdater {
         console.log('\nTech Arsenal markers not found – skipping dynamic generation');
       }
 
-      // 6. Generate and display diff
-      const stripTimestamp = (s) => s.replace(/Last updated:.*<\/em>/g, '');
+      // 6. Generate and display diff (ignore the volatile timestamp; non-greedy
+      //    so multiple "Last updated:" lines never over-match across content)
+      const stripTimestamp = (s) => s.replace(/Last updated:.*?<\/em>/g, '');
       const diff = DiffReporter.generateDiff(
         stripTimestamp(readmeContent),
         stripTimestamp(updatedContent)
@@ -883,6 +892,7 @@ if (require.main === module) {
 module.exports = {
   GitHubDataCollector,
   StatsAggregator,
+  SvgCardRenderer,
   ReadmeRenderer,
   ReadmeWriter,
   ReadmeUpdater,
@@ -890,6 +900,8 @@ module.exports = {
   HealthChecker,
   README_EXTERNAL_SERVICES,
   LANGUAGE_BADGE_MAP,
+  LANGUAGE_COLOR,
+  SVG_THEME,
   MARKER_ACTIVITY_START,
   MARKER_ACTIVITY_END,
   MARKER_TECH_START,
