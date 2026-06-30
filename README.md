@@ -24,15 +24,15 @@
 
 ## ⭐ Featured Projects
 
-<!-- 手動キュレーション領域。テーマ性・新しさで厳選 -->
+<!-- 手動キュレーション領域。テーマ性・新しさで厳選（public リポジトリのみ） -->
 
 | Project | What it does | Tech |
 | :--- | :--- | :--- |
 | **[x402Explorer](https://github.com/shoya-sue/x402Explorer)** | x402 エコシステムの成長を可視化する、AIエージェント決済時代のインフラインデックス | `TypeScript` |
-| **[Vibe-Chan](https://github.com/shoya-sue/Vibe-Chan)** | Claude Code でトレンドニュースを MECE に整理して配信 | `Python` |
-| **[CharaCast](https://github.com/shoya-sue/CharaCast)** | AIキャラクターによる YouTube 自動配信ツール | `JavaScript` |
-| **[Cogito](https://github.com/shoya-sue/Cogito)** | Solana 上で動く Trade AI Agent | `Rust` |
 | **[solana-weekly-report](https://github.com/shoya-sue/solana-weekly-report)** | Solana のトランザクション履歴を週次レポートに自動整形 | `JavaScript` |
+| **[VibeCordingJsons](https://github.com/shoya-sue/VibeCordingJsons)** | Claude Code のベストプラクティス設定をまとめたテンプレート集 | `Shell` |
+| **[SimpleVault](https://github.com/shoya-sue/SimpleVault)** | Solana の Token Vault スマートコントラクト | `TypeScript` |
+| **[DisasterMesh](https://github.com/shoya-sue/DisasterMesh)** | Cypherpunk Hackathon 出展の分散メッシュ通信デモ | `TypeScript` |
 
 ## 🧰 Tech Stack
 
