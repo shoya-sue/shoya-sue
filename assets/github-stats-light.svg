@@ -1,0 +1,14 @@
+<svg width="480" height="200" viewBox="0 0 480 200" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="shoya-sue GitHub statistics">
+<style>text{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;}</style>
+<rect x="0.5" y="0.5" width="479" height="199" rx="6" fill="#ffffff" stroke="#d0d7de"/>
+<text x="25" y="40" fill="#0969da" font-size="17" font-weight="600">shoya-sue · GitHub Stats</text>
+<text x="25" y="76" fill="#656d76" font-size="12">This week</text>
+<text x="103" y="76" fill="#1f2328" font-size="13" font-weight="500">21 commits  ·  9 PRs  ·  2 issues</text>
+<text x="25" y="102" fill="#656d76" font-size="12">All time</text>
+<text x="103" y="102" fill="#1f2328" font-size="13" font-weight="500">1 stars  ·  2 forks  ·  32 repos</text>
+<text x="25" y="128" fill="#656d76" font-size="12">Top languages</text>
+<rect x="25" y="138" width="430" height="8" rx="4" fill="#eaeef2"/>
+<defs><clipPath id="bar-light"><rect x="25" y="138" width="430" height="8" rx="4"/></clipPath></defs>
+<g clip-path="url(#bar-light)"><rect x="25.0" y="138" width="330.9" height="8" fill="#3178c6"/><rect x="355.9" y="138" width="44.7" height="8" fill="#f1e05a"/><rect x="400.7" y="138" width="26.0" height="8" fill="#3572A5"/><rect x="426.7" y="138" width="15.5" height="8" fill="#dea584"/><rect x="442.2" y="138" width="12.8" height="8" fill="#89e051"/></g>
+<circle cx="30.0" cy="166.0" r="5" fill="#3178c6"/><text x="41.0" y="170" fill="#1f2328" font-size="11">TypeScript 72.5%</text><circle cx="159.2" cy="166.0" r="5" fill="#f1e05a"/><text x="170.2" y="170" fill="#1f2328" font-size="11">JavaScript 9.8%</text><circle cx="282.2" cy="166.0" r="5" fill="#3572A5"/><text x="293.2" y="170" fill="#1f2328" font-size="11">Python 5.7%</text><circle cx="30.0" cy="184.0" r="5" fill="#dea584"/><text x="41.0" y="188" fill="#1f2328" font-size="11">Rust 3.4%</text><circle cx="115.8" cy="184.0" r="5" fill="#89e051"/><text x="126.8" y="188" fill="#1f2328" font-size="11">Shell 2.8%</text>
+</svg>

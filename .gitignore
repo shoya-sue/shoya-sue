@@ -4,6 +4,17 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Test coverage
+coverage/
+scripts/coverage/
+
+# README updater runtime artifacts
+health-report.json
+*.bak
+
+# MCP logs
+excalidraw.log
+
 # Runtime data
 pids
 *.pid

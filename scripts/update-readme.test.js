@@ -1,10 +1,13 @@
 const {
   StatsAggregator,
+  SvgCardRenderer,
   ReadmeRenderer,
   ReadmeWriter,
   DiffReporter,
   HealthChecker,
   LANGUAGE_BADGE_MAP,
+  LANGUAGE_COLOR,
+  SVG_THEME,
   MARKER_ACTIVITY_START,
   MARKER_ACTIVITY_END,
   MARKER_TECH_START,
@@ -286,132 +289,57 @@ describe('ReadmeWriter', () => {
 // ============================================================
 describe('ReadmeRenderer', () => {
   describe('generateActivitySection', () => {
-    const makeStats = (overrides = {}) => ({
-      commits: 12,
-      commitMessages: [
-        { message: 'feat: add new feature', repo: 'project-a' },
-        { message: 'fix: resolve issue #42', repo: 'project-b' },
-      ],
-      pullRequests: 3,
-      issues: 1,
-      reviews: 0,
-      activeRepos: ['project-a', 'project-b'],
-      otherActivity: [],
-      weekStart: '2026/3/8',
-      weekEnd: '2026/3/15',
-      ...overrides,
+    it('renders a theme-aware <picture> referencing self-hosted SVGs', () => {
+      const section = ReadmeRenderer.generateActivitySection('shoya-sue');
+
+      expect(section).toContain('<picture>');
+      expect(section).toContain('(prefers-color-scheme: dark)');
+      expect(section).toContain('(prefers-color-scheme: light)');
+      expect(section).toContain('./assets/github-stats-dark.svg');
+      expect(section).toContain('./assets/github-stats-light.svg');
+      expect(section).toContain('alt="shoya-sue の GitHub Stats"');
+      expect(section).toContain('Last updated:');
     });
 
-    it('should generate complete section with all data', () => {
-      const languages = [
-        { name: 'JavaScript', bytes: 5000, percent: 50 },
-        { name: 'TypeScript', bytes: 3000, percent: 30 },
-      ];
-      const repoStats = { totalStars: 15, totalForks: 5, totalRepos: 8 };
-
-      const section = ReadmeRenderer.generateActivitySection(makeStats(), languages, repoStats);
-
-      expect(section).toContain('📊 Weekly Activity');
-      expect(section).toContain('2026/3/8 - 2026/3/15');
-      expect(section).toContain('Commits-12');
-      expect(section).toContain('Pull%20Requests-3');
-      expect(section).toContain('Issues-1');
-      expect(section).toContain('JavaScript');
-      expect(section).toContain('50%25');
-      expect(section).toContain('[project-a]');
-      expect(section).toContain('Stars-15');
-      expect(section).toContain('Forks-5');
-      expect(section).toContain('Repos-8');
-      expect(section).toContain('Active Repositories');
+    it('honors a custom assets directory', () => {
+      const section = ReadmeRenderer.generateActivitySection('me', 'static');
+      expect(section).toContain('./static/github-stats-dark.svg');
+      expect(section).toContain('./static/github-stats-light.svg');
     });
 
-    it('should handle null stats gracefully', () => {
-      const section = ReadmeRenderer.generateActivitySection(null, [], null);
-      expect(section).toContain('No recent activity data available');
+    it('does not depend on any third-party stat image service', () => {
+      const section = ReadmeRenderer.generateActivitySection('me');
+      expect(section).not.toContain('vercel.app');
+      expect(section).not.toContain('herokuapp');
+      expect(section).not.toContain('shields.io');
     });
 
-    it('should hide PR and Issue badges when count is zero', () => {
-      const section = ReadmeRenderer.generateActivitySection(
-        makeStats({ pullRequests: 0, issues: 0 }),
-        [],
-        { totalStars: 0, totalForks: 0, totalRepos: 1 }
-      );
-      expect(section).not.toContain('Pull%20Requests');
-      expect(section).not.toContain('Issues-');
+    it('keeps the timestamp inside an <em> so it can be stripped from diffs', () => {
+      const section = ReadmeRenderer.generateActivitySection('me');
+      expect(section).toMatch(/Last updated:.*<\/em>/);
     });
 
-    it('should truncate long commit messages', () => {
-      const section = ReadmeRenderer.generateActivitySection(
-        makeStats({
-          commitMessages: [{
-            message: 'This is a very long commit message that should be truncated at some point because it exceeds the limit',
-            repo: 'repo',
-          }],
-        }),
-        [],
-        { totalStars: 0, totalForks: 0, totalRepos: 1 }
-      );
-      expect(section).toContain('...');
-    });
-
-    it('should show reviews badge when count > 0', () => {
-      const section = ReadmeRenderer.generateActivitySection(
-        makeStats({ reviews: 7 }),
-        [],
-        { totalStars: 0, totalForks: 0, totalRepos: 1 }
-      );
-      expect(section).toContain('Reviews-7');
-    });
-
-    it('should hide reviews badge when count is zero', () => {
-      const section = ReadmeRenderer.generateActivitySection(
-        makeStats({ reviews: 0 }),
-        [],
-        { totalStars: 0, totalForks: 0, totalRepos: 1 }
-      );
-      expect(section).not.toContain('Reviews-');
-    });
-
-    it('should show other activity when no commit messages', () => {
-      const section = ReadmeRenderer.generateActivitySection(
-        makeStats({
-          commitMessages: [],
-          otherActivity: [
-            { type: 'WatchEvent', label: '⭐ Starred a repo', count: 3 },
-            { type: 'CreateEvent', label: '🌱 Branch/Repo created', count: 1 },
-          ],
-        }),
-        [],
-        { totalStars: 0, totalForks: 0, totalRepos: 1 }
-      );
-      expect(section).toContain('Starred a repo');
-      expect(section).toContain('<strong>3</strong>');
-      expect(section).not.toContain('No recent activity');
-    });
-
-    it('should show no activity message when everything is empty', () => {
-      const section = ReadmeRenderer.generateActivitySection(
-        makeStats({ commitMessages: [], otherActivity: [] }),
-        [],
-        { totalStars: 0, totalForks: 0, totalRepos: 1 }
-      );
-      expect(section).toContain('No recent activity');
+    it('differs only by the timestamp between calls (strippable for no-op detection)', () => {
+      const strip = (s) => s.replace(/Last updated:.*?<\/em>/g, '');
+      const a = ReadmeRenderer.generateActivitySection('me');
+      const b = ReadmeRenderer.generateActivitySection('me');
+      expect(strip(a)).toBe(strip(b));
     });
   });
 
   describe('generateTechArsenalSection', () => {
-    it('should generate badges for known languages', () => {
+    it('generates flat (not for-the-badge) badges for known languages', () => {
       const bytes = { JavaScript: 5000, Rust: 3000, HTML: 1000 };
       const section = ReadmeRenderer.generateTechArsenalSection(bytes);
 
-      expect(section).toContain('Programming Languages');
+      expect(section).toContain('style=flat');
+      expect(section).not.toContain('for-the-badge');
       expect(section).toContain('logo=javascript');
       expect(section).toContain('logo=rust');
-      expect(section).toContain('Frontend');
       expect(section).toContain('logo=html5');
     });
 
-    it('should skip languages without badge mapping', () => {
+    it('skips languages without badge mapping', () => {
       const bytes = { JavaScript: 5000, 'UnknownLang': 1000 };
       const section = ReadmeRenderer.generateTechArsenalSection(bytes);
 
@@ -419,13 +347,13 @@ describe('ReadmeRenderer', () => {
       expect(section).not.toContain('UnknownLang');
     });
 
-    it('should handle empty language bytes', () => {
+    it('handles empty language bytes without emitting badges', () => {
       const section = ReadmeRenderer.generateTechArsenalSection({});
       expect(section).toContain('<div align="center">');
-      expect(section).not.toContain('Programming Languages');
+      expect(section).not.toContain('<img');
     });
 
-    it('should sort by byte count', () => {
+    it('sorts badges by byte count descending', () => {
       const bytes = { PHP: 100, TypeScript: 5000, Rust: 3000 };
       const section = ReadmeRenderer.generateTechArsenalSection(bytes);
 
@@ -435,6 +363,97 @@ describe('ReadmeRenderer', () => {
 
       expect(tsIndex).toBeLessThan(rustIndex);
       expect(rustIndex).toBeLessThan(phpIndex);
+    });
+
+    it('limits output to the top-N languages', () => {
+      const bytes = {
+        JavaScript: 9, TypeScript: 8, Python: 7, Rust: 6,
+        Go: 5, Ruby: 4, PHP: 3, Java: 2, Swift: 1,
+      };
+      const section = ReadmeRenderer.generateTechArsenalSection(bytes, 3);
+      const badgeCount = (section.match(/<img /g) || []).length;
+      expect(badgeCount).toBe(3);
+    });
+  });
+});
+
+// ============================================================
+// SvgCardRenderer tests (self-hosted stat cards)
+// ============================================================
+describe('SvgCardRenderer', () => {
+  const data = {
+    owner: 'shoya-sue',
+    weeklyStats: { commits: 16, pullRequests: 7, issues: 0, reviews: 0 },
+    repoStats: { totalStars: 1, totalForks: 2, totalRepos: 32 },
+    languages: [
+      { name: 'TypeScript', percent: 72.5 },
+      { name: 'JavaScript', percent: 9.8 },
+    ],
+  };
+
+  describe('escapeXml', () => {
+    it('escapes all XML special characters', () => {
+      expect(SvgCardRenderer.escapeXml('a & b < c > d "e" \'f\''))
+        .toBe('a &amp; b &lt; c &gt; d &quot;e&quot; &apos;f&apos;');
+    });
+  });
+
+  describe('generateStatsCard', () => {
+    it('produces a valid SVG document (dark)', () => {
+      const svg = SvgCardRenderer.generateStatsCard(data, 'dark');
+      expect(svg.startsWith('<svg')).toBe(true);
+      expect(svg.trim().endsWith('</svg>')).toBe(true);
+      expect(svg).toContain(SVG_THEME.dark.bg);
+    });
+
+    it('uses light theme tokens for the light variant', () => {
+      const svg = SvgCardRenderer.generateStatsCard(data, 'light');
+      expect(svg).toContain(SVG_THEME.light.bg);
+    });
+
+    it('falls back to the dark theme for an unknown theme', () => {
+      const svg = SvgCardRenderer.generateStatsCard(data, 'rainbow');
+      expect(svg).toContain(SVG_THEME.dark.bg);
+    });
+
+    it('includes weekly and all-time stats', () => {
+      const svg = SvgCardRenderer.generateStatsCard(data, 'dark');
+      expect(svg).toContain('16 commits');
+      expect(svg).toContain('7 PRs');
+      expect(svg).toContain('32 repos');
+    });
+
+    it('shows issues and reviews only when greater than zero', () => {
+      const svg = SvgCardRenderer.generateStatsCard(
+        { ...data, weeklyStats: { commits: 1, pullRequests: 0, issues: 4, reviews: 2 } },
+        'dark'
+      );
+      expect(svg).toContain('4 issues');
+      expect(svg).toContain('2 reviews');
+    });
+
+    it('renders a language bar using per-language colors', () => {
+      const svg = SvgCardRenderer.generateStatsCard(data, 'dark');
+      expect(svg).toContain('Top languages');
+      expect(svg).toContain(LANGUAGE_COLOR.TypeScript);
+    });
+
+    it('omits the language bar when there are no languages', () => {
+      const svg = SvgCardRenderer.generateStatsCard({ ...data, languages: [] }, 'dark');
+      expect(svg).not.toContain('Top languages');
+      expect(svg.startsWith('<svg')).toBe(true);
+    });
+
+    it('escapes the owner name to prevent SVG injection', () => {
+      const svg = SvgCardRenderer.generateStatsCard({ ...data, owner: 'a<b>&c' }, 'dark');
+      expect(svg).toContain('a&lt;b&gt;&amp;c');
+      expect(svg).not.toContain('a<b>&c');
+    });
+
+    it('handles missing stats objects safely', () => {
+      const svg = SvgCardRenderer.generateStatsCard({ owner: 'x' }, 'dark');
+      expect(svg.startsWith('<svg')).toBe(true);
+      expect(svg).toContain('0 commits');
     });
   });
 });
