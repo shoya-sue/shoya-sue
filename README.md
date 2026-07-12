@@ -44,8 +44,8 @@
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" alt="JavaScript"/>
 <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python"/>
 <img src="https://img.shields.io/badge/Rust-000000?style=flat&logo=rust&logoColor=white" alt="Rust"/>
-<img src="https://img.shields.io/badge/Shell-4EAA25?style=flat&logo=gnubash&logoColor=white" alt="Shell"/>
 <img src="https://img.shields.io/badge/CSS-1572B6?style=flat&logo=css3&logoColor=white" alt="CSS"/>
+<img src="https://img.shields.io/badge/Shell-4EAA25?style=flat&logo=gnubash&logoColor=white" alt="Shell"/>
 <img src="https://img.shields.io/badge/PHP-777BB4?style=flat&logo=php&logoColor=white" alt="PHP"/>
 <img src="https://img.shields.io/badge/HTML-E34F26?style=flat&logo=html5&logoColor=white" alt="HTML"/>
 
@@ -65,7 +65,7 @@
     <img src="./assets/github-stats-dark.svg" alt="shoya-sue の GitHub Stats" width="480">
   </picture>
   <br>
-  <sub>🤖 <em>Last updated: 2026年6月30日 11:08</em></sub>
+  <sub>🤖 <em>Last updated: 2026年7月12日 00:32</em></sub>
 </div>
 
 <!-- WEEKLY_ACTIVITY_END -->
