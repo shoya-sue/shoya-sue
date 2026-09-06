@@ -3,12 +3,12 @@
 <rect x="0.5" y="0.5" width="479" height="199" rx="6" fill="#0d1117" stroke="#30363d"/>
 <text x="25" y="40" fill="#58a6ff" font-size="17" font-weight="600">shoya-sue · GitHub Stats</text>
 <text x="25" y="76" fill="#8b949e" font-size="12">This week</text>
-<text x="103" y="76" fill="#c9d1d9" font-size="13" font-weight="500">26 commits  ·  5 PRs</text>
+<text x="103" y="76" fill="#c9d1d9" font-size="13" font-weight="500">39 commits  ·  3 PRs</text>
 <text x="25" y="102" fill="#8b949e" font-size="12">All time</text>
-<text x="103" y="102" fill="#c9d1d9" font-size="13" font-weight="500">1 stars  ·  1 forks  ·  32 repos</text>
+<text x="103" y="102" fill="#c9d1d9" font-size="13" font-weight="500">1 stars  ·  1 forks  ·  34 repos</text>
 <text x="25" y="128" fill="#8b949e" font-size="12">Top languages</text>
 <rect x="25" y="138" width="430" height="8" rx="4" fill="#21262d"/>
 <defs><clipPath id="bar-dark"><rect x="25" y="138" width="430" height="8" rx="4"/></clipPath></defs>
-<g clip-path="url(#bar-dark)"><rect x="25.0" y="138" width="315.3" height="8" fill="#3178c6"/><rect x="340.3" y="138" width="61.9" height="8" fill="#f1e05a"/><rect x="402.2" y="138" width="26.4" height="8" fill="#3572A5"/><rect x="428.6" y="138" width="15.5" height="8" fill="#dea584"/><rect x="444.1" y="138" width="10.9" height="8" fill="#563d7c"/></g>
-<circle cx="30.0" cy="166.0" r="5" fill="#3178c6"/><text x="41.0" y="170" fill="#c9d1d9" font-size="11">TypeScript 69.3%</text><circle cx="159.2" cy="166.0" r="5" fill="#f1e05a"/><text x="170.2" y="170" fill="#c9d1d9" font-size="11">JavaScript 13.6%</text><circle cx="288.4" cy="166.0" r="5" fill="#3572A5"/><text x="299.4" y="170" fill="#c9d1d9" font-size="11">Python 5.8%</text><circle cx="30.0" cy="184.0" r="5" fill="#dea584"/><text x="41.0" y="188" fill="#c9d1d9" font-size="11">Rust 3.4%</text><circle cx="115.8" cy="184.0" r="5" fill="#563d7c"/><text x="126.8" y="188" fill="#c9d1d9" font-size="11">CSS 2.4%</text>
+<g clip-path="url(#bar-dark)"><rect x="25.0" y="138" width="271.4" height="8" fill="#3178c6"/><rect x="296.4" y="138" width="69.1" height="8" fill="#F05138"/><rect x="365.5" y="138" width="53.3" height="8" fill="#f1e05a"/><rect x="418.8" y="138" width="22.7" height="8" fill="#3572A5"/><rect x="441.5" y="138" width="13.5" height="8" fill="#dea584"/></g>
+<circle cx="30.0" cy="166.0" r="5" fill="#3178c6"/><text x="41.0" y="170" fill="#c9d1d9" font-size="11">TypeScript 58.5%</text><circle cx="159.2" cy="166.0" r="5" fill="#F05138"/><text x="170.2" y="170" fill="#c9d1d9" font-size="11">Swift 14.9%</text><circle cx="257.4" cy="166.0" r="5" fill="#f1e05a"/><text x="268.4" y="170" fill="#c9d1d9" font-size="11">JavaScript 11.5%</text><circle cx="30.0" cy="184.0" r="5" fill="#3572A5"/><text x="41.0" y="188" fill="#c9d1d9" font-size="11">Python 4.9%</text><circle cx="128.2" cy="184.0" r="5" fill="#dea584"/><text x="139.2" y="188" fill="#c9d1d9" font-size="11">Rust 2.9%</text>
 </svg>
