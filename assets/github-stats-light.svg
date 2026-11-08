@@ -5,7 +5,7 @@
 <text x="25" y="76" fill="#656d76" font-size="12">This week</text>
 <text x="103" y="76" fill="#1f2328" font-size="13" font-weight="500">2 commits  ·  0 PRs</text>
 <text x="25" y="102" fill="#656d76" font-size="12">All time</text>
-<text x="103" y="102" fill="#1f2328" font-size="13" font-weight="500">1 stars  ·  1 forks  ·  37 repos</text>
+<text x="103" y="102" fill="#1f2328" font-size="13" font-weight="500">1 stars  ·  2 forks  ·  37 repos</text>
 <text x="25" y="128" fill="#656d76" font-size="12">Top languages</text>
 <rect x="25" y="138" width="430" height="8" rx="4" fill="#eaeef2"/>
 <defs><clipPath id="bar-light"><rect x="25" y="138" width="430" height="8" rx="4"/></clipPath></defs>
